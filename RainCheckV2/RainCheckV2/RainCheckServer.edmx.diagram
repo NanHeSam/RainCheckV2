@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15ca1587a5ed4b33b4c7afd897a08a9f" Name="Diagram1">
+        <EntityTypeShape EntityType="RainCheckServerModel.car" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.city" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.coverage_level" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.credential" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.customer_tbl" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.login" Width="1.5" PointX="9.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.make" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.model" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.policy_tbl" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.quote" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.state" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RainCheckServerModel.user_tbl" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="RainCheckServerModel.fk_policy_car" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_state_id" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_user_city" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_ob_coverage" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_op_coverage" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_sb_coverage" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_sp_coverage" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_user_credential" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_customer_user" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_login_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_model_make" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_userid" ManuallyRouted="false" />
+        <AssociationConnector Association="RainCheckServerModel.fk_user_state" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
