@@ -55,7 +55,8 @@
             </table>
         </div>
         <div class="tab-pane" id="change" style="text-align:center">
-        @Html.BeginForm("submit", "UserAccount"){ 
+            @using (Html.BeginForm("submit", "UserAccount", FormMethod.Post))
+            { 
                   <h1>Your Policy</h1>
                 <p>
                     Personal Bodily Injury & Property Damage:-

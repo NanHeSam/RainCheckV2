@@ -40,27 +40,27 @@ namespace RainCheckV2.Controllers
             return View("ChangePolicy", coverage);
         }
 
-        //[HttpPost]
-        //public ActionResult saveQuote(string save, string cancel)
-        //{
-        //    var policies = new policyViewModel(1);
-        //    if (!string.IsNullOrEmpty(save))
-        //    {
-        //        var policy = context.policy_tbl.Where(o => o.user_id == 1).OrderByDescending(o => o.start_date).First();
+        [HttpPost]
+        public ActionResult saveQuote(string save, string cancel)
+        {
+            var policies = new policyViewModel(1);
+            if (!string.IsNullOrEmpty(save))
+            {
+                var policy = context.policy_tbl.Where(o => o.user_id == 1).OrderByDescending(o => o.start_date).First();
 
-        //        policy.self_body = System.Convert.ToDecimal(Request.Form["Self_body"]);
-        //        policy.self_property = System.Convert.ToDecimal(Request.Form["Self_property"]);
-        //        policy.opposite_body = System.Convert.ToDecimal(Request.Form["op_body"]);
-        //        policy.opposite_property = System.Convert.ToDecimal(Request.Form["op_property"]);
-        //        context.SaveChanges();
-        //        return RedirectToAction("UserMain", policies);
-        //    }
-        //    else if (!string.IsNullOrEmpty(cancel))
-        //    {
-        //        return View("UserMain", policies);
-        //    }
-        //    return RedirectToAction("Submit");
+                policy.self_body = System.Convert.ToDecimal(Request.Form["Self_body"]);
+                policy.self_property = System.Convert.ToDecimal(Request.Form["Self_property"]);
+                policy.opposite_body = System.Convert.ToDecimal(Request.Form["op_body"]);
+                policy.opposite_property = System.Convert.ToDecimal(Request.Form["op_property"]);
+                context.SaveChanges();
+                return View("UserMain", policies);
+            }
+            else if (!string.IsNullOrEmpty(cancel))
+            {
+                return View("UserMain", policies);
+            }
+            return RedirectToAction("Submit");
 
-        //}
+        }
     }
 }
