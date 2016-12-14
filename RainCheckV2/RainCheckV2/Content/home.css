@@ -5,14 +5,89 @@
 }
 table{
     width:100%;
+    margin:20px;
     text-align:left;
 }
-.menulist {
-    width:20%;
-    background-color:aquamarine;
+
+td {
+    vertical-align:top;
+    padding:10px;
 }
 
-.contentDiv {
+hr {
+    margin-top:20px;
+    margin-bottom:20px;
+    border-color:#C0C0C0 !important;
+}
+
+li a{
+  color: #ffffff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.menuCell {
+    width:20%;
+    
+}
+
+#menuDiv {
+    height:auto;
+    width:100%;
+    float:left;
+}
+
+#contentDiv {
+    height:auto;
+    width:100%;
+    float:right;
+}
+
+.contentCell {
     width:70%;
-    background-color:antiquewhite;
+}
+
+.getQuoteDiv {
+    margin-top:30px;
+    width:100%;
+    height:150px;
+    text-align:center;
+}
+
+#myCarousel {
+    
+}
+
+.slide1 {
+    background-image: url("../Image/image1.jpg");
+    height:500px;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+.slide2{
+    background-image: url("../Image/image2.jpg");
+    height:500px;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+.slide3{
+    background-image: url("../Image/image3.jpg");
+    height:500px;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+.input-group{
+    margin: 10px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.myErrorClass {
+    color: #FF0000; /* red */
 }

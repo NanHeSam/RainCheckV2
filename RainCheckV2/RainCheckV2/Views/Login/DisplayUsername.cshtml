@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "DisplayUsername";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link href="~/Content/login.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+}
+
+<div class="Content">
+    <div class="alert-success">
+        Diaplay Username: @ViewData["username"]
+    </div>
+    <hr />
+    <div class="returnToLogin">
+        <a href="../Login/LoginPage">Return to login page</a>
+    </div>
+</div>

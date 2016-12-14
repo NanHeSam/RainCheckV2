@@ -36,7 +36,7 @@ namespace RainCheckV2.Controllers
 
         public ActionResult Submit()
         {
-            List<coverage_level> coverage = context.coverage_level.ToList<coverage_level>();
+            var coverage = context.coverage_level.ToList<coverage_level>();
             return View("ChangePolicy", coverage);
         }
 

@@ -1,0 +1,66 @@
+﻿@model RainCheckV2.Models.customer_tbl
+
+@{
+    ViewBag.Title = "LoadData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+    <style>
+        form div + div {
+            margin-top: 1em;
+            color: white;
+            font-size: medium;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: right;
+        }
+
+        input, textarea {
+            font: 1em sans-serif;
+            /* To give the same size to all text field */
+            width: 300px;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            /* To harmonize the look & feel of text field border */
+            border: 1px solid #999;
+        }
+
+        .button {
+            /* To position the buttons to the same position of the text fields */
+            padding-left: 90px; /* same size as the label elements */
+        }
+
+        button {
+            margin-left: 75px;
+            background-color: #ffcccc;
+            color: blue;
+        }
+
+        #f1 {
+            background-color: #b03a2e;
+        }
+
+        h2 {
+            padding: 2px 2px 2px 2px;
+        }
+    </style>
+}
+    <div>
+        <h2>Start New Policy </h2>
+    </div>
+    <div id="id1" class="cl">
+        <form id="f1" style="height:200px" action="" method="post">
+            <div class="cl" style="padding-top:60px">
+                <label for="male" style="font-size:medium; color:white;">Driver's Licence#</label> <input style="margin-left:10px" id="Text1" value="@TempData.Peek("DriverLicence")" name="driver_license_number" type="text" /> <br />
+                <label for="male" style="font-size:medium; color:white;"></label>@ViewBag.UND
+            </div>
+            <div class="button">
+                <button id="Submit1" type="submit" style="margin-left:5px;" value="Continue" name="action:StartPolicy"> Continue </button>
+            </div>
+            @Html.ValidationSummary()
+        </form>
+    </div>

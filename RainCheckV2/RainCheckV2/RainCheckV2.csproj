@@ -133,7 +133,11 @@
     <Content Include="Content\home.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Image\image1.jpg" />
+    <Content Include="Image\image2.jpg" />
+    <Content Include="Image\image3.jpg" />
     <Content Include="Models\RainCheckServer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RainCheckServer.edmx</DependentUpon>
@@ -148,6 +152,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -164,8 +172,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="common\DateRangeValid.cs" />
+    <Compile Include="common\MultipleButtonAttribute.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\car.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
@@ -184,6 +197,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\fogetPasswordVM.cs" />
+    <Compile Include="Models\forgetUsernameVM.cs" />
     <Compile Include="Models\login.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
@@ -251,6 +266,21 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\UserAccount\ChangePolicy.cshtml" />
     <Content Include="Views\UserAccount\UserMain.cshtml" />
+    <Content Include="Views\Home\getSavedQuote.cshtml" />
+    <Content Include="Views\Home\displayQuote.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\LoginPage.cshtml" />
+    <Content Include="Views\Login\DisplayUsername.cshtml" />
+    <Content Include="Views\Login\EnterVerifyCode.cshtml" />
+    <Content Include="Views\Login\ForgetPassword.cshtml" />
+    <Content Include="Views\Login\ForgetUsername.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Login\ResetPasswordResult.cshtml" />
+    <Content Include="Views\Login\UserAccount.cshtml" />
+    <Content Include="Views\User\LoadData.cshtml" />
+    <Content Include="Views\User\NewPolicy.cshtml" />
+    <Content Include="Views\User\NewAccount.cshtml" />
+    <Content Include="Views\User\WelcomePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

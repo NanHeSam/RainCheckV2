@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section head{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <link href="~/Content/home.css" rel="stylesheet" />
+<script>
+        $(document).ready(function () {
+            $("#aboutlink").click(function () {
+                $("#homelink").attr("class", "");
+                $("#contactuslink").attr("class", "");
+                $("#aboutlink").attr("class", "active");
+                $("#home").attr("class", "tab-pane fade");
+                $("#contactUs").attr("class", "tab-pane fade");
+                $("#about").attr("class", "tab-pane fade in active");
+            });
+            $("#contactuslink").click(function () {
+                $("#homelink").attr("class", "");
+                $("#aboutlink").attr("class", "");
+                $("#contactuslink").attr("class", "active");
+                $("#home").attr("class", "tab-pane fade");
+                $("#about").attr("class", "tab-pane fade");
+                $("#contactUs").attr("class", "tab-pane fade in active");
+            });
+            $("#homelink").click(function () {
+                $("#contactuslink").attr("class", "");
+                $("#aboutlink").attr("class", "");
+                $("#homelink").attr("class", "active");
+                $("#contactUs").attr("class", "tab-pane fade");
+                $("#about").attr("class", "tab-pane fade");
+                $("#home").attr("class", "tab-pane fade in active");
+            });
+
+            $("#getQuoteBtn").click(function () {
+                $("#zipcodeForm").validate({
+                    errorPlacement: function (error, element) { // error message position
+                        error.insertAfter($("#getQuoteBtn")); //
+
+                    },
+                    rules: {
+                        Zipcode: {
+                            required: true
+                        }
+                    },
+                    messages: {
+                        Zipcode: {
+                            required: "zipcode required"
+                        }
+                    },
+                    errorClass: "myErrorClass"
+                });
+            });
+
+
+        });
+</script>
+}
+<table>
+    <tr>
+        <td class="menuCell">
+            <div id="menuDiv">
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li id="homelink" class="active"><a href="#home">Home <span class="glyphicon glyphicon-home"></span></a></li>
+                    <li id="aboutlink"><a href="#about">About</a></li>
+                    <li id="contactuslink"><a href="#contactUs">Contact Us <span class="glyphicon glyphicon-phone-alt"></span></a></li>
+                    <li><a href="~/Login/LoginPage">Log In</a></li>
+                </ul>
+
+
+            </div>
+        </td>
+        <td class="contentCell">
+            <div id="contentDiv" class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <div class="slide1"></div>
+                                <div class="carousel-caption">
+                                    <h1>Royal Coverage</h1>
+                                    <p>We cover everything to protect you and your family</p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="slide2"></div>
+                                <div class="carousel-caption">
+                                    <h1>Supreme Coverage</h1>
+                                    <p>We cover everything to protect you and your family</p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="slide3"></div>
+                                <div class="carousel-caption">
+                                    <h1>Premium Coverage</h1>
+                                    <p>We cover everything to protect you and your family</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="getQuoteDiv bg-danger">
+                        <form id="zipcodeForm" action="~/Home/GetQuote" method="post">
+                            <div>
+                                <div class="input-group">
+                                    <input name="Zipcode" id="ZipcodeTextBox" class="form-control" style="width:100px;" type="text" placeholder="ZipCode" />
+                                    <input id="getQuoteBtn" class="btn btn-danger" type="submit" value="Get Quote" /><br />
+                                </div>
+                            </div>
+
+                        </form>
+                        <div>
+                            <p>
+                                Already has <b>quote saved</b>? <a href="../Home/getSavedQuotePage">Saved Quote</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="about" class="tab-pane fade">
+                    <div class="jumbotron">
+                        <p>RainCheck is honest insurance company!</p>
+                    </div>
+                </div>
+                <div id="contactUs" class="tab-pane fade">
+                    <div>
+                        <p>
+                            <h3>Phone:</h3><br />
+                            <span>(123)456-7869</span><br />
+                            <span>Hours: 9:00AM - 5:00PM EST</span>
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Address:</h3><br />
+                        <span>242 New Brunswick Rd</span><br />
+                        <span>Piscataway, NJ 08854</span>
+                    </div>
+                </div>
+            </div>
+
+        </td>
+    </tr>
+</table>
+

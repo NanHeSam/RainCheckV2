@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "WelcomePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <style>
+    form div + div {
+        margin-top: 1em;
+        color: white;
+        font-size: medium;
+    }
+
+    label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+        color: white;
+    }
+
+    input, textarea {
+        font: 1em sans-serif;
+        /* To give the same size to all text field */
+        width: 300px;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        /* To harmonize the look & feel of text field border */
+        border: 1px solid #999;
+    }
+
+    .button {
+        /* To position the buttons to the same position of the text fields */
+        padding-left: 90px; /* same size as the label elements */
+    }
+
+    button {
+        margin-left: 75px;
+        background-color: #ffcccc;
+        color: blue;
+    }
+
+    #f1 {
+        background-color: #b03a2e;
+    }
+
+    h2 {
+        padding: 2px 2px 2px 2px;
+    }
+
+    .cl {
+        padding-top: 8px;
+    }
+</style>
+}
+<div>
+    <h2>Your Account Summary</h2>
+</div>
+
+<div id="id1" class="cl">
+    <form id="f1" action="Submit" method="post">
+        <div class="cl">
+            <label for="male" style="font-size:medium;">Policy ID</label><b style="font-size:medium; color:white;">  @ViewBag.randm</b>
+        </div>
+        <div class="cl">
+            <label for="male">Start Date</label><b>  @ViewBag.st</b>
+        </div>
+        <div id="id2" class="cl">
+            <label for="male">End Date</label><b>  @ViewBag.ed</b>
+        </div>
+        <div id="id2" class="cl">
+            <label for="male">Payment</label><b>  @ViewBag.Amount</b>
+        </div>
+        <div class="button">
+            <button id="Submit1" type="submit" style="margin-bottom:9px" value="Submit">Sign In</button>
+        </div>
+    </form>
+    @Html.ValidationSummary()
+</div>

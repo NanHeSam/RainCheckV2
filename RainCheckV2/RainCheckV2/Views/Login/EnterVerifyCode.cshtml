@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "EnterVerifyCode";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head {
+    <link href="~/Content/login.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<script src="~/Scripts/jquery.validate.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#VerificationBtn").click(function () {
+                $("#verifyCodeForm").validate({
+                    rules: {
+                        VerificationCode: {
+                            required: true,
+                            maxlength:10,
+                            regx:/^[A-Za-z0-9]$/
+                        }
+                    },
+                    messages: {
+                        required: "Verification code required",
+                        maxlength: "Code too long",
+                        regx:"Unvalid code"
+                    },
+                    errorClass: "myErrorClass"
+                });
+            });
+        });
+</script>
+}
+<div class="infoBlock">
+    <div class="alert alert-info">
+        <p>Verification Code sent to your email. </p>
+        <p>Please enter code to continue.</p>
+        <p><b>Note</b>: space not allowed.</p>
+    </div>
+</div>
+<div class="Content" style="margin-top:50px;">
+    <form id="verifyCodeForm" action="verifyCode" method="post">
+        <div class="HeaderLabel"><h3>Enter verification code to continue.</h3></div>
+        <span>vCode: @Session["verificationCode"]</span> <br />
+        <hr />
+        <div class="logInfoDiv">
+
+            <span style="color:red;">@TempData["errorMessage"]<br /></span>
+            <table>
+                <tr>
+                    <td>Verification Code:</td>
+                    <td><input name="VerificationCode" class="form-control" id="VerificationCodeTextBox" type="text" placeholder="Verification Code" /></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="submitDiv">
+            <input id="VerificationBtn" class="btn btn-danger btn-block" type="submit" value="Continue" />
+        </div>
+    </form>
+    <hr />
+    <div class="returnToLogin">
+        <a href="../Login/LoginPage">Return to login page</a>
+    </div>
+</div>

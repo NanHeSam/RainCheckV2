@@ -1,0 +1,124 @@
+﻿@model RainCheckV2.Models.policy_tbl
+
+@{
+    ViewBag.Title = "NewPolicy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+    <style>
+    form div + div {
+        margin-top: 1em;
+        color: white;
+        font-size: medium;
+    }
+
+    label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+    }
+
+    input, textarea {
+        font: 1em sans-serif;
+        /* To give the same size to all text field */
+        width: 300px;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        /* To harmonize the look & feel of text field border */
+        border: 1px solid #999;
+    }
+
+    .button {
+        /* To position the buttons to the same position of the text fields */
+        padding-left: 90px; /* same size as the label elements */
+    }
+
+    button {
+        margin-left: 75px;
+        background-color: #ffcccc;
+        color: blue;
+    }
+
+    #f1 {
+        background-color: #b03a2e;
+    }
+
+    h1 {
+        padding: 2px 2px 2px 2px;
+    }
+
+    .cl {
+        padding-top: 8px;
+    }
+
+    .selct {
+        padding-top: 6px;
+    }
+
+    .covr {
+        width: 170px;
+    }
+</style>
+}
+
+<div>
+    <h2>Policy Information</h2>
+</div>
+<div id="id1" class="cl">
+    <form id="f1" action="" method="post">
+        <div class="cl" style="margin-top:6px">
+            <label for="male" style="color:white; font-size:medium;">Start Date</label> <input style="margin-left:10px" name="start_date" id="Text1" type="text" value="@TempData.Peek("SD")" /> <br />
+        </div>
+        <div class="cl">
+            <label for="male">End Date </label> <input style="margin-left:10px" id="Text1" name="end_date" type="text" value="@TempData.Peek("ED")" /><br />
+            <label for="male"></label> @ViewBag.vlid
+        </div>
+        <div class="cl">
+            <div class="selct">
+                <label for="male">Self Property</label>
+                <select class="covr" style="margin-left:10px" name="SelfProperty" value="@TempData.Peek("SP")">
+                    <option value="0" name="0">0</option>
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select><br />
+            </div>
+            <div class="selct">
+                <label for="male">Self Body</label>
+                <select class="covr" style="margin-left:10px" name="SelfBody" value="@TempData.Peek("SB")">
+                    <option value="0" name="0">0</option>
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select><br />
+            </div>
+            <div class="selct">
+                <label for="male">Opposite Property</label>
+                <select class="covr" style="margin-left:10px" name="OppositeProperty" value="@TempData.Peek("OP")">
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select>
+            </div>
+            <div class="selct">
+                <label for="male">Opposite Body</label>
+                <select class="covr" style="margin-left:10px" name="OppositeBody" value="@TempData.Peek("OB")">
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select>
+            </div>
+        </div>
+        <div class="button">
+            <button id="Submit1" type="submit" style="margin-bottom:9px" value="Previous" name="action:Load"> Previous </button> <button id="Submit1" type="submit" style="margin-bottom:9px; margin-left:09px" value="Continue" name="action:CreateAccount"> Continue </button>
+        </div>
+        @ViewBag.err
+        @Html.ValidationSummary()
+    </form>
+</div>
+

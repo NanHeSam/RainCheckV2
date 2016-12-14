@@ -1,0 +1,54 @@
+﻿@model RainCheckV2.Models.quote
+
+@{
+    ViewBag.Title = "getSavedQuote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <script>
+            $(document).ready(function(){
+                $("#Submitbtn").click(function(){
+
+                });
+            });
+
+    </script>
+}
+<div class="container">
+    <div class="Content" style="margin-top:50px;">
+
+        @using (Html.BeginForm("getSavedQuote", "Home", FormMethod.Post))
+            {
+            <div class="HeaderLabel"><h3>Enter reference code to get saved Quote .</h3></div>
+                <hr />
+                <div class="logInfoDiv">
+                    <span style="color:red">@TempData["Message"]</span>
+                    <table>
+                        <tr>
+                            <td>Reference Number :</td>
+                            <td>@Html.TextBoxFor(x => x.Reference_number, new { @class = "form-control" })</td>
+                        </tr>
+                    </table>
+
+                    <input id="Submitbtn" class="btn btn-danger" type="submit" value="Get Saved Quote" />
+                </div>
+
+        }
+        <hr />
+        <div class="returnToLogin">
+            <a href="../Home/index">Return to Home Page</a>
+        </div>
+    </div>
+</div>
+
+
+

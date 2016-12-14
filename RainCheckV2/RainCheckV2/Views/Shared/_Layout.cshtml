@@ -4,26 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     @RenderSection("head", required: false)
 </head>
 <body>
 
-    <nav class="navbar navbar-default ">
 
-        <div class="nav navbar-nav navbar-right">
-            <a href="@Url.Action("Index", "Default")">
-                <span class="glyphicon glyphicon-log-out"></span> Log out
-            </a>
-        </div>
-    </nav>
 
     <div class="container">
         <div class="row">
             <a class="col-md-2 col-md-offset-5" href="@Url.Action("Index", "Default")">
                 <img class="text-center" src="~/asset/RainCheckLogo.PNG" />
+            </a>
+            <a href="@Url.Action("Index", "Default")" class="col-md-offset-4" style="vertical-align: middle;display: inline-block;float: none;">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
             </a>
         </div>
         <div>
@@ -34,7 +30,7 @@
     <footer class="footer">
         <p style="text-align:center">&copy; @DateTime.Now.Year - All Right Reserve Rain Check Corp</p>
     </footer>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

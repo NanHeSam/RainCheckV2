@@ -1,0 +1,68 @@
+﻿@model RainCheckV2.Models.quote
+
+@{
+    ViewBag.Title = "displayQuote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section head{
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <style>
+        .displayQuote {
+            width: 600px;
+            text-align: center;
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .buttonDiv {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        td {
+            width: 50%;
+            text-align: left;
+            padding: 5px;
+        }
+
+            td:nth-child(2n+1) {
+                text-align: right;
+            }
+    </style>
+
+}
+<div class="displayQuote jumbotron">
+    <div class="HeaderLabel"><h3>Quote Detail for @Model.Reference_number</h3></div>
+    <form action="gotoPurchase" method="post">
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>User Id:</td>
+                <td>@Model.userid</td>
+            </tr>
+            <tr>
+                <td>Quote Price:</td>
+                <td>@Model.quote_amount</td>
+            </tr>
+            <tr>
+                <td>Quote Date:</td>
+                <td>@Model.quote_date</td>
+            </tr>
+
+        </table>
+        <div class="buttonDiv">
+            <a class="btn btn-danger" href="../Home/index">Return to Home</a>
+            <span style="width:20px; display:inline-block;"></span>
+            <input class="btn btn-danger" type="submit" value="Purchase" />
+        </div>
+    </form>
+</div>
+

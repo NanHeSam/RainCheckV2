@@ -1,0 +1,53 @@
+﻿@model RainCheckV2.Models.forgetUsernameVM
+
+@{
+    ViewBag.Title = "ForgetUsername";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head
+{
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+<div class="Content">
+    @using (Html.BeginForm("DisplayUsername", "Login", FormMethod.Post))
+            {
+        <div class="HeaderLabel"><h3>Enter information to get Username</h3></div>
+                <hr />
+                        <div class="logInfoDiv">
+                            <span style="color:red;">@TempData["errorMessage"]</span>
+                            <table>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>@Html.TextBoxFor(x => x.email, new { @class = "form-control" })</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        @Html.ValidationMessageFor(x => x.email, null, new { @style = "color:red;" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Policy Number:</td>
+                                    <td>@Html.TextBoxFor(x => x.policy_Num, new { @class = "form-control" })</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        @Html.ValidationMessageFor(x => x.policy_Num, null, new { @style = "color:red;" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="submitDiv">
+                            <input id="GetUsernameBtn" class="btn btn-danger btn-block" type="submit" value="Get Username" />
+                        </div>
+                        <hr />
+    }
+    <div class="returnToLogin">
+        <a href="../Login/LoginPage">Return to login page</a>
+    </div>
+</div>
