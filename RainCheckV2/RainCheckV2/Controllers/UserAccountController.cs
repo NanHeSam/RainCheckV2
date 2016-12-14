@@ -27,8 +27,8 @@ namespace RainCheckV2.Controllers
 
         public ActionResult UserMain()
         {
-            Session["logged_username"] = "Sam";
-            var policy = new policyViewModel(1);
+            decimal id = decimal.Parse(Session["custId"].ToString());
+            var policy = new policyViewModel(id);
             return View(policy);
         }
 

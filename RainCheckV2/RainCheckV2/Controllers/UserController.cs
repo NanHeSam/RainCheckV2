@@ -17,7 +17,6 @@ namespace RainCheckV2.Controllers
         public ActionResult Load()
         {
             customer_tbl ct = new customer_tbl { customer_id = 1, userid = 2, driver_license_number = 22221982, join_date = Convert.ToDateTime("12/12/1982") };
-            decimal dc = Decimal.Parse(TempData.Peek("Carid").ToString());
             return View("LoadData", ct);
         }
 
@@ -165,7 +164,7 @@ namespace RainCheckV2.Controllers
                 RainCheckServerEntities objContext = new RainCheckServerEntities();
                 decimal userID = 0;
                 // string quoteReference = TempData.Peek("QR").ToString();
-                string quoteReference = "asdf";  // getting from vivek *******************************************************************************************
+                string quoteReference = TempData.Peek("refNum").ToString();  
                 List<quote> qs = objContext.quotes.ToList();
                 quote newQuote = new quote();
                 foreach (quote q in qs)
@@ -292,7 +291,8 @@ namespace RainCheckV2.Controllers
                 Random rd = new Random();
                 policy_tbl policy = new policy_tbl();
                 policy.policy_number = polID;
-                policy.car_id = 6; policy.user_id = userID; policy.start_date = Convert.ToDateTime(startDate);
+                policy.car_id = Decimal.Parse(TempData.Peek("Carid").ToString());
+                policy.user_id = userID; policy.start_date = Convert.ToDateTime(startDate);
                 policy.end_date = Convert.ToDateTime(endDate); policy.policy_amount = total; policy.self_property = selfPro;
                 policy.self_body = selfBod; policy.opposite_property = oppPro; policy.opposite_body = oppBod;
                 objContext.policy_tbl.Add(policy);

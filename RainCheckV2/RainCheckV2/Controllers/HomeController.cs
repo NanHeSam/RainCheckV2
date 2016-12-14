@@ -37,7 +37,7 @@ namespace RainCheckV2.Controllers
 
             if (targets.Count() == 0)
             {
-                TempData["Message"] = "No such user";
+                TempData["Message"] = "Quote not Exist!";
                 return RedirectToAction("getSavedQuotePage");
             }
             else
