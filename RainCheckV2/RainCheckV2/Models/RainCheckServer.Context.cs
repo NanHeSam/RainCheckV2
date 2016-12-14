@@ -143,5 +143,251 @@ namespace RainCheckV2.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<string> RCSgetmodel(string carmake)
+        {
+            var carmakeParameter = carmake != null ?
+                new ObjectParameter("carmake", carmake) :
+                new ObjectParameter("carmake", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("RCSgetmodel", carmakeParameter);
+        }
+    
+        public virtual int SP_Credential_ID(Nullable<decimal> rank, ObjectParameter credential_id_num)
+        {
+            var rankParameter = rank.HasValue ?
+                new ObjectParameter("rank", rank) :
+                new ObjectParameter("rank", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Credential_ID", rankParameter, credential_id_num);
+        }
+    
+        public virtual ObjectResult<string> SP_GetCity(string statename)
+        {
+            var statenameParameter = statename != null ?
+                new ObjectParameter("statename", statename) :
+                new ObjectParameter("statename", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_GetCity", statenameParameter);
+        }
+    
+        public virtual int SP_GetCityID(string cityname, ObjectParameter city_id_num)
+        {
+            var citynameParameter = cityname != null ?
+                new ObjectParameter("cityname", cityname) :
+                new ObjectParameter("cityname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_GetCityID", citynameParameter, city_id_num);
+        }
+    
+        public virtual ObjectResult<string> SP_GetState()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_GetState");
+        }
+    
+        public virtual int SP_GetStateID(string statename, ObjectParameter state_id_num)
+        {
+            var statenameParameter = statename != null ?
+                new ObjectParameter("statename", statename) :
+                new ObjectParameter("statename", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_GetStateID", statenameParameter, state_id_num);
+        }
+    
+        public virtual int SP_InsertCarInfo(Nullable<decimal> vin_number, string car_model, string body_style, string primary_use, Nullable<decimal> estimated_annum_mileage, Nullable<bool> ownership, Nullable<decimal> car_year, string car_make, ObjectParameter carid)
+        {
+            var vin_numberParameter = vin_number.HasValue ?
+                new ObjectParameter("vin_number", vin_number) :
+                new ObjectParameter("vin_number", typeof(decimal));
+    
+            var car_modelParameter = car_model != null ?
+                new ObjectParameter("car_model", car_model) :
+                new ObjectParameter("car_model", typeof(string));
+    
+            var body_styleParameter = body_style != null ?
+                new ObjectParameter("body_style", body_style) :
+                new ObjectParameter("body_style", typeof(string));
+    
+            var primary_useParameter = primary_use != null ?
+                new ObjectParameter("primary_use", primary_use) :
+                new ObjectParameter("primary_use", typeof(string));
+    
+            var estimated_annum_mileageParameter = estimated_annum_mileage.HasValue ?
+                new ObjectParameter("estimated_annum_mileage", estimated_annum_mileage) :
+                new ObjectParameter("estimated_annum_mileage", typeof(decimal));
+    
+            var ownershipParameter = ownership.HasValue ?
+                new ObjectParameter("ownership", ownership) :
+                new ObjectParameter("ownership", typeof(bool));
+    
+            var car_yearParameter = car_year.HasValue ?
+                new ObjectParameter("car_year", car_year) :
+                new ObjectParameter("car_year", typeof(decimal));
+    
+            var car_makeParameter = car_make != null ?
+                new ObjectParameter("car_make", car_make) :
+                new ObjectParameter("car_make", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertCarInfo", vin_numberParameter, car_modelParameter, body_styleParameter, primary_useParameter, estimated_annum_mileageParameter, ownershipParameter, car_yearParameter, car_makeParameter, carid);
+        }
+    
+        public virtual int SP_InsertQuote(Nullable<decimal> userid, Nullable<decimal> quote_amount, string reference_num, ObjectParameter quoteID)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(decimal));
+    
+            var quote_amountParameter = quote_amount.HasValue ?
+                new ObjectParameter("quote_amount", quote_amount) :
+                new ObjectParameter("quote_amount", typeof(decimal));
+    
+            var reference_numParameter = reference_num != null ?
+                new ObjectParameter("reference_num", reference_num) :
+                new ObjectParameter("reference_num", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertQuote", useridParameter, quote_amountParameter, reference_numParameter, quoteID);
+        }
+    
+        public virtual int SP_InsertUserInfo(string user_F_name, string user_M_name, string user_L_name, Nullable<decimal> user_phone, string user_SSN, Nullable<System.DateTime> user_DOB, string user_email, string user_address, string city, string state, Nullable<decimal> zip_code, Nullable<bool> marital_Status, Nullable<bool> gender, string education_Level, string employment, Nullable<bool> accident_Records_5YEARS, Nullable<bool> traffic_Tickets_5YEARS, Nullable<bool> dUIs_10_YEARS, Nullable<bool> suspensions_5YEARS, Nullable<bool> defensive_Drive_2YEARS, Nullable<bool> military_Affiliation, Nullable<bool> veteran_Status, Nullable<decimal> rank_ID, ObjectParameter user_ID)
+        {
+            var user_F_nameParameter = user_F_name != null ?
+                new ObjectParameter("user_F_name", user_F_name) :
+                new ObjectParameter("user_F_name", typeof(string));
+    
+            var user_M_nameParameter = user_M_name != null ?
+                new ObjectParameter("user_M_name", user_M_name) :
+                new ObjectParameter("user_M_name", typeof(string));
+    
+            var user_L_nameParameter = user_L_name != null ?
+                new ObjectParameter("user_L_name", user_L_name) :
+                new ObjectParameter("user_L_name", typeof(string));
+    
+            var user_phoneParameter = user_phone.HasValue ?
+                new ObjectParameter("user_phone", user_phone) :
+                new ObjectParameter("user_phone", typeof(decimal));
+    
+            var user_SSNParameter = user_SSN != null ?
+                new ObjectParameter("user_SSN", user_SSN) :
+                new ObjectParameter("user_SSN", typeof(string));
+    
+            var user_DOBParameter = user_DOB.HasValue ?
+                new ObjectParameter("user_DOB", user_DOB) :
+                new ObjectParameter("user_DOB", typeof(System.DateTime));
+    
+            var user_emailParameter = user_email != null ?
+                new ObjectParameter("user_email", user_email) :
+                new ObjectParameter("user_email", typeof(string));
+    
+            var user_addressParameter = user_address != null ?
+                new ObjectParameter("user_address", user_address) :
+                new ObjectParameter("user_address", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("city", city) :
+                new ObjectParameter("city", typeof(string));
+    
+            var stateParameter = state != null ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(string));
+    
+            var zip_codeParameter = zip_code.HasValue ?
+                new ObjectParameter("zip_code", zip_code) :
+                new ObjectParameter("zip_code", typeof(decimal));
+    
+            var marital_StatusParameter = marital_Status.HasValue ?
+                new ObjectParameter("Marital_Status", marital_Status) :
+                new ObjectParameter("Marital_Status", typeof(bool));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(bool));
+    
+            var education_LevelParameter = education_Level != null ?
+                new ObjectParameter("Education_Level", education_Level) :
+                new ObjectParameter("Education_Level", typeof(string));
+    
+            var employmentParameter = employment != null ?
+                new ObjectParameter("Employment", employment) :
+                new ObjectParameter("Employment", typeof(string));
+    
+            var accident_Records_5YEARSParameter = accident_Records_5YEARS.HasValue ?
+                new ObjectParameter("Accident_Records_5YEARS", accident_Records_5YEARS) :
+                new ObjectParameter("Accident_Records_5YEARS", typeof(bool));
+    
+            var traffic_Tickets_5YEARSParameter = traffic_Tickets_5YEARS.HasValue ?
+                new ObjectParameter("Traffic_Tickets_5YEARS", traffic_Tickets_5YEARS) :
+                new ObjectParameter("Traffic_Tickets_5YEARS", typeof(bool));
+    
+            var dUIs_10_YEARSParameter = dUIs_10_YEARS.HasValue ?
+                new ObjectParameter("DUIs_10_YEARS", dUIs_10_YEARS) :
+                new ObjectParameter("DUIs_10_YEARS", typeof(bool));
+    
+            var suspensions_5YEARSParameter = suspensions_5YEARS.HasValue ?
+                new ObjectParameter("Suspensions_5YEARS", suspensions_5YEARS) :
+                new ObjectParameter("Suspensions_5YEARS", typeof(bool));
+    
+            var defensive_Drive_2YEARSParameter = defensive_Drive_2YEARS.HasValue ?
+                new ObjectParameter("Defensive_Drive_2YEARS", defensive_Drive_2YEARS) :
+                new ObjectParameter("Defensive_Drive_2YEARS", typeof(bool));
+    
+            var military_AffiliationParameter = military_Affiliation.HasValue ?
+                new ObjectParameter("Military_Affiliation", military_Affiliation) :
+                new ObjectParameter("Military_Affiliation", typeof(bool));
+    
+            var veteran_StatusParameter = veteran_Status.HasValue ?
+                new ObjectParameter("Veteran_Status", veteran_Status) :
+                new ObjectParameter("Veteran_Status", typeof(bool));
+    
+            var rank_IDParameter = rank_ID.HasValue ?
+                new ObjectParameter("Rank_ID", rank_ID) :
+                new ObjectParameter("Rank_ID", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertUserInfo", user_F_nameParameter, user_M_nameParameter, user_L_nameParameter, user_phoneParameter, user_SSNParameter, user_DOBParameter, user_emailParameter, user_addressParameter, cityParameter, stateParameter, zip_codeParameter, marital_StatusParameter, genderParameter, education_LevelParameter, employmentParameter, accident_Records_5YEARSParameter, traffic_Tickets_5YEARSParameter, dUIs_10_YEARSParameter, suspensions_5YEARSParameter, defensive_Drive_2YEARSParameter, military_AffiliationParameter, veteran_StatusParameter, rank_IDParameter, user_ID);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> SP_SpitStateID(string statename)
+        {
+            var statenameParameter = statename != null ?
+                new ObjectParameter("statename", statename) :
+                new ObjectParameter("statename", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("SP_SpitStateID", statenameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_Email(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_Email", emailParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_phonenum(Nullable<decimal> phone)
+        {
+            var phoneParameter = phone.HasValue ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_phonenum", phoneParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_SSN(string sSN)
+        {
+            var sSNParameter = sSN != null ?
+                new ObjectParameter("SSN", sSN) :
+                new ObjectParameter("SSN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_SSN", sSNParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_vin(Nullable<decimal> vin)
+        {
+            var vinParameter = vin.HasValue ?
+                new ObjectParameter("vin", vin) :
+                new ObjectParameter("vin", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_vin", vinParameter);
+        }
     }
 }

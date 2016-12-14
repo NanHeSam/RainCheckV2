@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "CarInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+
+
+    <script>
+        /****************************************js implementation****************************************/
+
+        $(document).ready(function () {
+            $("#Make").change(function () {
+                $('#Model')                                 //Given class called tmpoption that is removed whenever the make is changed
+                        .find('option')
+                        .remove(".tmpoption")
+                        .end()
+                    ;
+                value_select = $("#Make").val().toLowerCase(); // getting the value from "Make" dropdownlist then converting to lower case(because in database it is lowercase)
+                $.ajax({
+                    type: 'POST',
+                    url: '/CarInfo/MyAjaxCall',        // /controller/nameofthe method in controller
+                    data: { value: value_select },      // key:value
+                    success: function (data) {          //get the json_data (which is object type)
+                        var count = Object.keys(data).length; //getting the number of objects in json file
+                        for (i = 0; i < count; i++) {
+
+                            var text = "<option class=" + "tmpoption" + " value= \"" + data[i] + "\" >" + data[i] + "</option>";
+                            $("#modelname").after(text);  //adds the above text UNDER the dropdownlist
+                        }
+                    }
+                });
+            });
+
+
+
+        });
+    </script>
+}
+
+<div class="wrapper">
+    <section id="quotelay">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="row">
+                <form action="SubmitCarInfo" method="post">
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Vin Number</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:10px;">
+                            <input type="number" name="vin" id="vin" text-align="center" class="form-control form-control-md" min="99999" max="9999999" placeholder="Vin #" required>
+                            <div id="vinERR"></div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Year:</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:20px;">
+                            <select style="font-size:1.5em;" class="form-control" id="Year" name="Year" required>
+                                <option></option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                                <option value="2006">2006</option>
+                                <option value="2005">2005</option>
+                                <option value="2004">2004</option>
+                                <option value="2003">2003</option>
+                                <option value="2002">2002</option>
+                                <option value="2001">2001</option>
+                                <option value="2000">2000</option>
+                                <option value="1999">1999</option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                                <option value="1989">1989</option>
+                                <option value="1988">1988</option>
+                                <option value="1987">1987</option>
+                                <option value="1986">1986</option>
+                                <option value="1985">1985</option>
+                                <option value="1984">1984</option>
+                                <option value="1983">1983</option>
+                                <option value="1982">1982</option>
+                                <option value="1981">1981</option>
+                                <option value="9999">Before 1981</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Make:</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:20px;">
+                            <select style="font-size:1.5em;" class="form-control" id="Make" name="Make" required>
+                                <option></option>
+                                <option value="audi">Audi</option>
+                                <option value="bmw">BMW</option>
+                                <option value="buick">Buick</option>
+                                <option value="chevrolet">Chevrolet</option>
+                                <option value="chrysler">Chrysler</option>
+                                <option value="dodge">Dodge</option>
+                                <option value="ford">Ford</option>
+                                <option value="honda">Honda</option>
+                                <option value="hyundai">Hyundai</option>
+                                <option value="jeep">Jeep</option>
+                                <option value="kia">Kia</option>
+                                <option value="lincoln">Lincoln</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="mitsubishi">Mitsubishi</option>
+                                <option value="nissan">Nissan</option>
+                                <option value="subaru">Subaru</option>
+                                <option value="toyota">Toyota</option>
+                                <option value="volkswagen">Volkswagen</option>
+                                <option value="volvo">Volvo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Model</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:20px;">
+                            <select style="font-size:1.5em; width:6.5em;" class="form-control" id="Model" name="Model" required>
+                                <option id="modelname"></option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Body Type</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:20px;">
+                            <select style="font-size:1.5em; width:6.5em;" class="form-control" id="body" name="body" required>
+                                <option></option>
+                                <option value="suv">SUV</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="hatchback">Hatchback</option>
+                                <option value="coupe">Coupe</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Is this vehicle owned or leased?</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:20px; ">
+                            <select style="font-size:1.5em; width:6.5em;" class="form-control" id="vehiclerel" name="vehiclerel" required>
+                                <option value="0">Owned</option>
+                                <option value="1">Leased</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Primary use of vehicle</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:20px; ">
+                            <select style="font-size:1.5em; width:6.5em;" class="form-control" id="usage" name="usage" required>
+                                <option value="commute">Commute</option>
+                                <option value="business">Business</option>
+                                <option value="pleasure">Pleasure</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                        <div class="col-xs-8">
+                            <h3 class="display-5" align="left">Estimated Annual Mileage</h3>
+                        </div>
+                        <div class="col-xs-3" style="padding-top:20px;">
+                            <select style="font-size:1.5em;" class="form-control" id="mileage" name="mileage">
+                                <option value="10000">0-9000</option>
+                                <option value="15000">9000-15000</option>
+                                <option value="20000">15000+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="padding-top:50px;">
+                        <button type="submit" value="submit" id="submit" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

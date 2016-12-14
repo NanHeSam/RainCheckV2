@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RainCheckServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RainCheckServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="car">
           <Key>
             <PropertyRef Name="car_id" />
@@ -317,6 +317,9 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="RCSgetmodel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="carmake" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -329,9 +332,25 @@
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="SP_Credential_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rank" Type="numeric" Mode="In" />
+          <Parameter Name="credential_id_num" Type="numeric" Mode="InOut" />
+        </Function>
         <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="statename" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetCityID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cityname" Type="nvarchar" Mode="In" />
+          <Parameter Name="city_id_num" Type="numeric" Mode="InOut" />
+        </Function>
+        <Function Name="SP_GetState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetStateID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="statename" Type="nvarchar" Mode="In" />
+          <Parameter Name="state_id_num" Type="numeric" Mode="InOut" />
         </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -341,10 +360,68 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_InsertCarInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vin_number" Type="numeric" Mode="In" />
+          <Parameter Name="car_model" Type="nvarchar" Mode="In" />
+          <Parameter Name="body_style" Type="nvarchar" Mode="In" />
+          <Parameter Name="primary_use" Type="nvarchar" Mode="In" />
+          <Parameter Name="estimated_annum_mileage" Type="numeric" Mode="In" />
+          <Parameter Name="ownership" Type="bit" Mode="In" />
+          <Parameter Name="car_year" Type="numeric" Mode="In" />
+          <Parameter Name="car_make" Type="nvarchar" Mode="In" />
+          <Parameter Name="carid" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="SP_InsertQuote" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="numeric" Mode="In" />
+          <Parameter Name="quote_amount" Type="decimal" Mode="In" />
+          <Parameter Name="reference_num" Type="nvarchar" Mode="In" />
+          <Parameter Name="quoteID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="SP_InsertUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_F_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_M_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_L_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_phone" Type="numeric" Mode="In" />
+          <Parameter Name="user_SSN" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_DOB" Type="datetime" Mode="In" />
+          <Parameter Name="user_email" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_address" Type="nvarchar" Mode="In" />
+          <Parameter Name="city" Type="nvarchar" Mode="In" />
+          <Parameter Name="state" Type="nvarchar" Mode="In" />
+          <Parameter Name="zip_code" Type="numeric" Mode="In" />
+          <Parameter Name="Marital_Status" Type="bit" Mode="In" />
+          <Parameter Name="Gender" Type="bit" Mode="In" />
+          <Parameter Name="Education_Level" Type="nvarchar" Mode="In" />
+          <Parameter Name="Employment" Type="nvarchar" Mode="In" />
+          <Parameter Name="Accident_Records_5YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Traffic_Tickets_5YEARS" Type="bit" Mode="In" />
+          <Parameter Name="DUIs_10_YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Suspensions_5YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Defensive_Drive_2YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Military_Affiliation" Type="bit" Mode="In" />
+          <Parameter Name="Veteran_Status" Type="bit" Mode="In" />
+          <Parameter Name="Rank_ID" Type="numeric" Mode="In" />
+          <Parameter Name="User_ID" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SpitStateID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="statename" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Unique_Email" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Unique_phonenum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="phone" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_Unique_SSN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SSN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Unique_vin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vin" Type="numeric" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="RainCheckServerModelStoreContainer">
@@ -418,8 +495,7 @@
             <End Role="quote" EntitySet="quote" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RainCheckServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -862,6 +938,83 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="RCSgetmodel" ReturnType="Collection(String)">
+            <Parameter Name="carmake" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Credential_ID">
+            <Parameter Name="rank" Mode="In" Type="Decimal" />
+            <Parameter Name="credential_id_num" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetCity" ReturnType="Collection(String)">
+            <Parameter Name="statename" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetCityID">
+            <Parameter Name="cityname" Mode="In" Type="String" />
+            <Parameter Name="city_id_num" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetState" ReturnType="Collection(String)" />
+          <FunctionImport Name="SP_GetStateID">
+            <Parameter Name="statename" Mode="In" Type="String" />
+            <Parameter Name="state_id_num" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InsertCarInfo">
+            <Parameter Name="vin_number" Mode="In" Type="Decimal" />
+            <Parameter Name="car_model" Mode="In" Type="String" />
+            <Parameter Name="body_style" Mode="In" Type="String" />
+            <Parameter Name="primary_use" Mode="In" Type="String" />
+            <Parameter Name="estimated_annum_mileage" Mode="In" Type="Decimal" />
+            <Parameter Name="ownership" Mode="In" Type="Boolean" />
+            <Parameter Name="car_year" Mode="In" Type="Decimal" />
+            <Parameter Name="car_make" Mode="In" Type="String" />
+            <Parameter Name="carid" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InsertQuote">
+            <Parameter Name="userid" Mode="In" Type="Decimal" />
+            <Parameter Name="quote_amount" Mode="In" Type="Decimal" />
+            <Parameter Name="reference_num" Mode="In" Type="String" />
+            <Parameter Name="quoteID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InsertUserInfo">
+            <Parameter Name="user_F_name" Mode="In" Type="String" />
+            <Parameter Name="user_M_name" Mode="In" Type="String" />
+            <Parameter Name="user_L_name" Mode="In" Type="String" />
+            <Parameter Name="user_phone" Mode="In" Type="Decimal" />
+            <Parameter Name="user_SSN" Mode="In" Type="String" />
+            <Parameter Name="user_DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="user_email" Mode="In" Type="String" />
+            <Parameter Name="user_address" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="zip_code" Mode="In" Type="Decimal" />
+            <Parameter Name="Marital_Status" Mode="In" Type="Boolean" />
+            <Parameter Name="Gender" Mode="In" Type="Boolean" />
+            <Parameter Name="Education_Level" Mode="In" Type="String" />
+            <Parameter Name="Employment" Mode="In" Type="String" />
+            <Parameter Name="Accident_Records_5YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Traffic_Tickets_5YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="DUIs_10_YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Suspensions_5YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Defensive_Drive_2YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Military_Affiliation" Mode="In" Type="Boolean" />
+            <Parameter Name="Veteran_Status" Mode="In" Type="Boolean" />
+            <Parameter Name="Rank_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="User_ID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SpitStateID" ReturnType="Collection(Decimal)">
+            <Parameter Name="statename" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Unique_Email" ReturnType="Collection(Int32)">
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Unique_phonenum" ReturnType="Collection(Int32)">
+            <Parameter Name="phone" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Unique_SSN" ReturnType="Collection(Int32)">
+            <Parameter Name="SSN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Unique_vin" ReturnType="Collection(Int32)">
+            <Parameter Name="vin" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1058,6 +1211,20 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RainCheckServerModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RainCheckServerModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="RCSgetmodel" FunctionName="RainCheckServerModel.Store.RCSgetmodel" />
+          <FunctionImportMapping FunctionImportName="SP_Credential_ID" FunctionName="RainCheckServerModel.Store.SP_Credential_ID" />
+          <FunctionImportMapping FunctionImportName="SP_GetCity" FunctionName="RainCheckServerModel.Store.SP_GetCity" />
+          <FunctionImportMapping FunctionImportName="SP_GetCityID" FunctionName="RainCheckServerModel.Store.SP_GetCityID" />
+          <FunctionImportMapping FunctionImportName="SP_GetState" FunctionName="RainCheckServerModel.Store.SP_GetState" />
+          <FunctionImportMapping FunctionImportName="SP_GetStateID" FunctionName="RainCheckServerModel.Store.SP_GetStateID" />
+          <FunctionImportMapping FunctionImportName="SP_InsertCarInfo" FunctionName="RainCheckServerModel.Store.SP_InsertCarInfo" />
+          <FunctionImportMapping FunctionImportName="SP_InsertQuote" FunctionName="RainCheckServerModel.Store.SP_InsertQuote" />
+          <FunctionImportMapping FunctionImportName="SP_InsertUserInfo" FunctionName="RainCheckServerModel.Store.SP_InsertUserInfo" />
+          <FunctionImportMapping FunctionImportName="SP_SpitStateID" FunctionName="RainCheckServerModel.Store.SP_SpitStateID" />
+          <FunctionImportMapping FunctionImportName="SP_Unique_Email" FunctionName="RainCheckServerModel.Store.SP_Unique_Email" />
+          <FunctionImportMapping FunctionImportName="SP_Unique_phonenum" FunctionName="RainCheckServerModel.Store.SP_Unique_phonenum" />
+          <FunctionImportMapping FunctionImportName="SP_Unique_SSN" FunctionName="RainCheckServerModel.Store.SP_Unique_SSN" />
+          <FunctionImportMapping FunctionImportName="SP_Unique_vin" FunctionName="RainCheckServerModel.Store.SP_Unique_vin" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

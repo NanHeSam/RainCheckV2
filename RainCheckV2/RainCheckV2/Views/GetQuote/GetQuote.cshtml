@@ -1,0 +1,751 @@
+﻿@model RainCheckV2.Models.GetQuoteDAL
+
+@{
+    ViewBag.Title = "Get Quote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <link href="~/Scripts/jquery-ui.css" rel="stylesheet">
+    <link href="~/Scripts/jquery-ui.min.css" rel="stylesheet">
+    <script>
+        $(document)
+            .ready(function() {
+                /* the function check when the key is released, which is the keyup event triggered*/
+                flag = 0;
+                $('#firstname, #lastname')
+                    .keyup(function() {
+                        $('#fandlname').html('');
+                        var val1 = $('#firstname').val().toUpperCase();
+                        var val2 = $('#lastname').val().toUpperCase();
+                        $('#fandlname').html(val1 + ' ' + val2);
+// combines the two values and displays in the driver's info tab as driver's name
+                    });
+                $("#continueOne")
+                    .click(function() {
+                        if ($('#firstname').val() == "") {
+                            document
+                                .getElementById('firstname')
+                                .style.borderColor = "red"; // highlights the border of input textbox in red.
+                            $("p").remove(".FNerror");
+                            $("#firstnameERR").prepend("<p" + " class=" + "FNerror" + ">Please enter name</p>");
+// Inserts content at the beginning of the selected element/s
+                            $("#firstnameERR").css({ "color": "red" });
+//adds or changes the css style of designated html tags.
+                            flag = 1;
+                        }
+                        if ($('#lastname').val() == "") {
+                            document.getElementById('lastname').style.borderColor = "red";
+                            $("p").remove(".LNerror");
+                            $("#lastnameERR").prepend("<p" + " class=" + "LNerror" + ">Please enter name</p>");
+                            $("#lastnameERR").css({ "color": "red" });
+                            flag = 1;
+                        }
+                        if ($('#streetaddress').val() == "") {
+                            document.getElementById('streetaddress').style.borderColor = "red";
+                            $("p").remove(".SAerror");
+                            $("#streetaddressERR").prepend("<p" + " class=" + "SAerror" + ">Please enter Address</p>");
+                            $("#streetaddressERR").css({ "color": "red" });
+                            flag = 1;
+                        }
+                        if ($('#city').val() == "") {
+                            document.getElementById('city').style.borderColor = "red";
+                            $("p").remove(".Cerror");
+                            $("#cityERR").prepend("<p" + " class=" + "Cerror" + ">Please enter City</p>");
+// Inserts content at the beginning of the selected element/s
+                            $("#cityERR").css({ "color": "red" });
+                            flag = 1;
+                        }
+                        if ($('#state').val() == "") {
+                            document.getElementById('state').style.borderColor = "red";
+                            $("p").remove(".Serror");
+                            $("#stateERR").prepend("<p" + " class=" + "Serror" + ">Please enter State</p>");
+                            $("#stateERR").css({ "color": "red" });
+                            flag = 1;
+                        }
+                        if ($('#zip').val() == "") {
+                            document.getElementById('zip').style.borderColor = "red";
+                            $("p").remove(".ZIPerror");
+                            $("#zipERR").prepend("<p" + " class=" + "ZIPerror" + ">Please enter ZIP code</p>");
+                            $("#zipERR").css({ "color": "red" });
+                            flag = 1;
+                        }
+                        if ($('#dob').val() == "") {
+                            document.getElementById('dob').style.borderColor = "red";
+                            $("p").remove(".DOBerror");
+                            $("#dobERR").prepend("<p" + " class=" + "DOBerror" + ">Please enter Date</p>");
+                            $("#dobERR").css({ "color": "red" });
+                            flag = 1;
+                        }
+                        if (flag == 1) {
+                            flag = 0;
+                            return;
+                        } else {
+                            flag = 0;
+                            $("p").remove(".FNerror");
+                            $("p").remove(".LNerror");
+                            $("p").remove(".SAerror");
+                            $("p").remove(".Cerror");
+                            $("p").remove(".Serror");
+                            $("p").remove(".ZIPerror");
+                            $("p").remove(".DOBerror");
+                            $("#cust").attr("class", "");
+//uses .attr method to set/change the attrbute values of particular element; In this case change: class="active" to class= ""// meaning not active
+                            $("#customer").attr("class", "tab-pane");
+                            $("#vehic").attr("class", "active");
+                            $("#vehicle").attr("class", "tab-pane active");
+
+                        }
+
+                    });
+                $("#continueTwo")
+                    .click(function() {
+                        $("#vehic").attr("class", "");
+                        $("#vehicle").attr("class", "tab-pane");
+                        $("#driv").attr("class", "active");
+                        $("#driver").attr("class", "tab-pane active");
+                    });
+                /**********************checks for ssn unique next and requirement.*********************/
+                $("#continueThree")
+                    .click(function() {
+
+                        ssn = $('#ssn').val();
+                        if ($('#ssn').val() == "") {
+                            document.getElementById('ssn').style.borderColor = "red";
+                            $("p").remove(".ssnerror");
+                            $("#ssnERR").prepend("<p" + " class=" + "ssnerror" + ">Please enter SSN</p>");
+                            $("#ssnERR").css({ "color": "red" });
+                            flag = 1;
+                        }
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/GetQuote/uniqueSSN',
+                            data: { value: ssn },
+                            success: function(data) {
+                                if (!data) {
+                                    flag = 1;
+                                    document.getElementById('ssn').style.borderColor = "red";
+                                    $("p").remove(".ssnerror");
+                                    $("#ssnERR").prepend("<p" + " class=" + "ssnerror" + ">Enter Unique SSN.</p>");
+                                    $("#ssnERR").css({ "color": "red" });
+                                }
+                            }
+                        });
+
+                        if (flag == 1) {
+                            flag = 0;
+                            return;
+                        } else {
+                            $("#driv").attr("class", "");
+                            $("#driver").attr("class", "tab-pane");
+                            $("#drivhis").attr("class", "active");
+                            $("#driver_history").attr("class", "tab-pane active");
+                        }
+                    });
+                $("#continueFour")
+                    .click(function() {
+                        $("#drivhis").attr("class", "");
+                        $("#driver_history").attr("class", "tab-pane");
+                        $("#cont").attr("class", "active");
+                        $("#contact_info").attr("class", "tab-pane active");
+                    });
+                $('#myform')
+                    .click(function() {
+
+                        var flag = 0;
+                        if ($('#email').val() == "") {
+                            document.getElementById('email').style.borderColor = "red";
+                            $("p").remove(".emailerror");
+                            $("#emailERR").prepend("<p" + " class=" + "emailerror" + ">Please enter email</p>");
+// Inserts content at the beginning of the selected element/s
+                            $("#emailERR").css({ "color": "red" });
+//adds or changes the css style of designated html tags.
+                            flag = 1;
+                        }
+                        if ($('#phonenumber').val() == "") {
+                            document.getElementById('phonenumber').style.borderColor = "red";
+                            $("p").remove(".phonenumbererror");
+                            $("#phonenumberERR")
+                                .prepend("<p" + " class=" + "phonenumbererror" + ">Please enter phonenumber.</p>");
+// Inserts content at the beginning of the selected element/s
+                            $("#phonenumberERR").css({ "color": "red" });
+//adds or changes the css style of designated html tags.
+                            flag = 1;
+                        }
+
+
+                        email = $('#email').val();
+                        if (email != "") {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/GetQuote/uniqueEmail',
+                                data: { value: email },
+                                success: function(data) {
+                                    if (!data) {
+                                        document.getElementById('email').style.borderColor = "red";
+                                        $("p").remove(".emailerror");
+                                        $("#emailERR")
+                                            .prepend("<p" + " class=" + "emailerror" + ">Enter Unique email-id</p>");
+// Inserts content at the beginning of the selected element/s
+                                        $("#emailERR").css({ "color": "red" });
+//adds or changes the css style of designated html tags.
+                                        flag = 1;
+                                    }
+                                }
+                            });
+                        }
+
+                        phone = $('#phonenumber').val();
+                        if (phone != "") {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/GetQuote/uniquePhone',
+                                data: { value: phone },
+                                success: function(data) {
+                                    if (!data) {
+                                        document.getElementById('phonenumber').style.borderColor = "red";
+                                        $("p").remove(".phonenumbererror");
+                                        $("#phonenumberERR")
+                                            .prepend("<p" +
+                                                " class=" +
+                                                "phonenumbererror" +
+                                                ">Enter Unique phonenumber.</p>");
+                                        $("#phonenumberERR").css({ "color": "red" });
+                                        flag = 1;
+                                    }
+                                }
+                            });
+                        }
+
+                        if (flag == 1) {
+                            flag = 0;
+                            return false;
+                        }
+
+                        /*             else
+                                     {
+                                      //   return true;
+                                     }*/
+
+
+                    });
+
+
+                $("#state")
+                    .change(function() {
+                        $('#city')
+                            .find('option')
+                            .remove(".tmpcityopt")
+                            .end();
+                        state_name = $("#state").val();
+// getting the value from "Make" dropdownlist then converting to lower case(because in database it is lowercase)
+                        $.ajax({
+                            type: 'POST',
+                            url: '/GetQuote/MyGetState', // /controller/nameofthe method in controller
+                            data: { value: state_name }, // key:value
+                            success: function(data) { //get the json_data (which is object type)
+
+                                var count = Object.keys(data).length; //getting the number of objects in json file
+                                for (i = 0; i < count; i++) {
+                                    var option = data[i];
+// make_name is the property of the object, which gives string value of the object
+                                    var text = "<option class=" +
+                                        "tmpcityopt" +
+                                        " value=\"" +
+                                        data[i] +
+                                        "\">" +
+                                        data[i] +
+                                        "</option>";
+// concatenate html with objectname(which is the different car names under a model)
+                                    $("#cityname").after(text); //adds the above text UNDER the dropdownlist
+                                }
+                            }
+                        });
+                    });
+
+
+                $("#Make")
+                    .change(function() {
+                        $('#Model') //Given class called tmpoption that is removed whenever the make is changed
+                            .find('option')
+                            .remove(".tmpoption")
+                            .end();
+                        value_select = $("#Make").val().toLowerCase();
+// getting the value from "Make" dropdownlist then converting to lower case(because in database it is lowercase)
+                        $.ajax({
+                            type: 'POST',
+                            url: '/GetQuote/MyAjaxCall', // /controller/nameofthe method in controller
+                            data: { value: value_select }, // key:value
+                            success: function(data) { //get the json_data (which is object type)
+                                var count = Object.keys(data).length; //getting the number of objects in json file
+                                for (i = 0; i < count; i++) {
+                                    var text = "<option class=" +
+                                        "tmpoption" +
+                                        " value= \"" +
+                                        data[i] +
+                                        "\" >" +
+                                        data[i] +
+                                        "</option>";
+                                    $("#modelname").after(text); //adds the above text UNDER the dropdownlist
+                                }
+                            }
+                        });
+                    });
+
+            });
+
+        $(function() {
+            $("#dob").datepicker({ changeYear: true, minDate: '-100Y', maxDate: "-18Y" });
+        });
+    </script>
+}
+
+
+<div class="wrapper">
+
+    <form id="myform" action="submit" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Customer</h2>
+                <ul class="nav nav-tabs">
+                    <li id="cust" class="active"><a href="#customer" data-toggle="tab">Customer</a></li>
+                    <li id="vehic"><a href="#vehicle" data-toggle="tab">Vehicle</a></li>
+                    <li id="driv"><a href="#driver" data-toggle="tab">Driver</a></li>
+                    <li id="drivhis"><a href="#driver_history" data-toggle="tab">Driver's History</a></li>
+                    <li id="cont"><a href="#contact_info" data-toggle="tab">Contact Info</a></li>
+                </ul>
+                <div class="tab-content">
+                    <!--  -->
+                    <div class="tab-pane active" id="customer">
+                        <!-- ******************Customer info***********************************************-->
+                        <section id="quotelay">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <h1 class="display-4" align="Left" style="color:snow; background-color:#B03A2E; padding:10px;border: 1px solid#E74C3C;">Customer Information</h1>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <h3 class="display-5" align="left">Full Name:</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:15px;">
+                                            <input type="text" id="firstname" name="firstname" maxlength="50" text-align="center" class="form-control" placeholder="First Name" required>
+                                            <div id="firstnameERR"></div>
+                                        </div>
+
+                                        <div class="col-xs-3" style="padding-top:15px;">
+                                            <input type="text" id="middlename" name="middlename" text-align="center" class="form-control form-control-md" placeholder="Middle Name">
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:15px;">
+                                            <input type="text" id="lastname" name="lastname" text-align="center" maxlength="50" class="form-control form-control-md" placeholder="Last Name" required>
+                                            <div id="lastnameERR"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-3">
+                                            <h3 class="display-5" align="left">Address:</h3>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:15px;">
+                                            <input type="text" id="streetaddress" name="streetaddress" class="form-control" text-align="center" placeholder="Street Address" required>
+                                            <div id="streetaddressERR"></div>
+                                        </div>
+                                        <div class="col-xs-2" style="padding-top:15px;">
+                                            <input type="text" id="apt" name="apt" text-align="center" class="form-control form-control-md" placeholder="Apt">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-3">
+                                            <h3 class="display-5" align="left">City, State:</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:15px;">
+                                            <select style="width:8em;" class="form-control" id="city" name="city" required>
+                                                <option id="cityname">Cities</option>
+                                            </select>
+                                            <div id="cityERR"></div>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:15px;">
+                                            <select style="width:8em;" class="form-control" id="state" name="state" required>
+                                                <option>State</option>
+                                                @foreach (var states in @Model.GetStates())
+                                                {
+                                                        <option value="@states">@states</option>}
+                                            </select>
+                                            <div id="stateERR"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-3">
+                                            <h3 class="display-5" align="left">ZIP Code</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:10px;">
+                                            <input type="number" name="zip" id="zip" text-align="center" class="form-control form-control-md" placeholder="Zip Code" required>
+                                            <div id="zipERR"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-3">
+                                            <h3 class="display-5" align="left">Date of Birth</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:10px;">
+                                            <input type="text" id="dob" name="dob" class="form-control form-control-md" required>
+                                            <div id="dobERR"></div>
+                                        </div>
+                                    </div>
+
+                                    <div style="padding-top:10px;">
+                                        <button type="button" id="continueOne" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="tab-pane" id="vehicle">
+                        <!--*********************************Vehicle info***********************************************************-->
+                        <section id="quotelay">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <h1 class="display-4" align="Left" style="color:snow; background-color:#B03A2E; padding:10px;border: 1px solid#E74C3C;">Add Vehicle Information</h1>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            <h3 class="display-5" align="left">Year:</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control" id="Year" name="Year" required>
+                                                <option value="0"></option>
+                                                <option value="2016">2016</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2014">2014</option>
+                                                <option value="2013">2013</option>
+                                                <option value="2012">2012</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2000">2000</option>
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1990">1990</option>
+                                                <option value="1989">1989</option>
+                                                <option value="1988">1988</option>
+                                                <option value="1987">1987</option>
+                                                <option value="1986">1986</option>
+                                                <option value="1985">1985</option>
+                                                <option value="1984">1984</option>
+                                                <option value="1983">1983</option>
+                                                <option value="1982">1982</option>
+                                                <option value="1981">1981</option>
+                                                <option value="9999">Before 1981</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-8">
+                                            <h3 class="display-5" align="left">Make:</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control" id="Make" name="Make" required>
+                                                <option value="0"></option>
+                                                <option value="audi">Audi</option>
+                                                <option value="bmw">BMW</option>
+                                                <option value="buick">Buick</option>
+                                                <option value="chevrolet">Chevrolet</option>
+                                                <option value="chrysler">Chrysler</option>
+                                                <option value="dodge">Dodge</option>
+                                                <option value="ford">Ford</option>
+                                                <option value="honda">Honda</option>
+                                                <option value="hyundai">Hyundai</option>
+                                                <option value="jeep">Jeep</option>
+                                                <option value="kia">Kia</option>
+                                                <option value="lincoln">Lincoln</option>
+                                                <option value="mercedes">Mercedes</option>
+                                                <option value="mitsubishi">Mitsubishi</option>
+                                                <option value="nissan">Nissan</option>
+                                                <option value="subaru">Subaru</option>
+                                                <option value="toyota">Toyota</option>
+                                                <option value="volkswagen">Volkswagen</option>
+                                                <option value="volvo">Volvo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-8">
+                                            <h3 class="display-5" align="left">Model</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:20px;">
+                                            <select style="font-size:1.5em; width:6.5em;" class="form-control" id="Model" name="Model" required>
+                                                <option id="modelname" value="0"></option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-8">
+                                            <h3 class="display-5" align="left">Is this vehicle owned or leased?</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:20px; ">
+                                            <select style="font-size:1.5em; width:6.5em;" class="form-control" id="vehiclerel" name="vehiclerel" required>
+                                                <option value="0">Owned</option>
+                                                <option value="1">Leased</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-8">
+                                            <h3 class="display-5" align="left">Primary use of vehicle</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:20px; ">
+                                            <select style="font-size:1.5em; width:6.5em;" class="form-control" id="usage" name="usage" required>
+                                                <option value="1">Commute</option>
+                                                <option value="0">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-8">
+                                            <h3 class="display-5" align="left">Estimated Annual Mileage</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control" id="mileage" name="mileage">
+                                                <option value="1">0-9000</option>
+                                                <option value="2">9000-15000</option>
+                                                <option value="3">15000+</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div style="padding-top:20px;">
+                                        <button type="button" id="continueTwo" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane" id="driver">
+                        <!--**************************************Driver info****************************************************-->
+                        <section id="quotelay">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <h1 class="display-4" align="Left" id="fandlname" style="color:snow; background-color:#B03A2E; padding:10px;border: 1px solid#E74C3C;"></h1>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Marital Status:</h3>
+                                        </div>
+                                        <div class="col-xs-3" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control form-control-md" id="marital" name="marital">
+                                                <option value="0">Single</option>
+                                                <option value="1">Married</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Gender:</h3>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top:20px;">
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="optradio" checked="checked" id="male" value="male">Male</label>
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="optradio" id="female" value="female">Female</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">SSN:</h3>
+                                        </div>
+                                        <div class="col-xs-3 col-xs-offset-3" style="padding-top:15px;">
+                                            <input type="password" id="ssn" name="ssn" text-align="center" class="form-control form-control-md" placeholder="SSN" required>
+                                            <div id="ssnERR"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Highest Level of Education</h3>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control" id="education" name="education">
+                                                <option value="noeducation">Less than High School</option>
+                                                <option value="ged">High School</option>
+                                                <option value="associate">Associate Degree</option>
+                                                <option value="bachelors">Bachelor's Degree</option>
+                                                <option value="masters">Masters Degree</option>
+                                                <option value="phd">PHD/Post Grad</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Employment</h3>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control" id="employment" name="employment">
+                                                <option value="private company">Private company/organization</option>
+                                                <option value="federal">Federal or Postal Office</option>
+                                                <option value="state">State Government</option>
+                                                <option value="unemployed">Umemployed</option>
+                                                <option value="self-employed">Self Employed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Military Affiliation</h3>
+                                        </div>
+                                        <div class="col-xs-4" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control" name="military">
+                                                <option value="0">Not Affiliated</option>
+                                                <option value="1">Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Veteran Status</h3>
+                                        </div>
+                                        <div class="col-xs-4" style="padding-top:20px;">
+                                            <select style="font-size:1.5em;" class="form-control" name="veteran">
+                                                <option value="0">Not Veteran</option>
+                                                <option value="1">Protected Veteran</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div style="padding-top:10px;">
+                                        <button type="button" id="continueThree" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane" id="driver_history">
+                        <!--**************************************Driver's History info****************************************************-->
+                        <section id="quotelay">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <h1 class="display-4" align="Left" style="color:snow; background-color:#B03A2E; padding:10px;border: 1px solid#E74C3C;">Driver's History</h1>
+                                <div class="form-group">
+
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Traffic Tickets in the last 5 years:</h3>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top:20px;">
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="ticketradio" id="ticketyes" value="1">Yes</label>
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="ticketradio" id="ticketno" checked="checked" value="0">No</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Accidents in the last 5 years:</h3>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top:20px;">
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="accidentradio" id="accidentyes" value="1">Yes</label>
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="accidentadio" id="accidentno" checked="checked" value="0">No</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">DUIs in the last 10 years:</h3>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top:20px;">
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="duiradio" id="duiyes" value="1">Yes</label>
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="duiradio" id="duino" checked="checked" value="0">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Suspensions in the last 10 years:</h3>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top:20px;">
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="suspensionradio" id="suspensionyes" value="1">Yes</label>
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="suspensionradio" id="suspensionno" checked="checked" value="0">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Have you taken Defensive driver course in the last  3 years?</h3>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top:20px;">
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="defensiveradio" id="defensiveyes" value="1">Yes</label>
+                                            <label class="radio-inline" style="font-size:20px;"><input type="radio" name="defensiveradio" id="defensiveno" checked="checked" value="0">No</label>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:10px;">
+                                        <button type="button" id="continueFour" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane" id="contact_info">
+                        <!-- ******************Contact info***********************************************-->
+                        <section id="quotelay">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <h1 class="display-4" align="Left" style="color:snow; background-color:#B03A2E; padding:10px;border: 1px solid#E74C3C;">Contact Info</h1>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Email Address:</h3>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:15px;">
+                                            <input type="email" id="email" name="email" text-align="center" class="form-control">
+                                            <div id="emailERR"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
+                                        <div class="col-xs-7">
+                                            <h3 class="display-5" align="left">Contact Number:</h3>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:15px;">
+                                            <input type="tel" id="phonenumber" name="phonenumber" class="form-control" text-align="center">
+                                            <div id="phonenumberERR"></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:10px;">
+                                        <button type="submit" value="submit" id="submit" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Get Quote</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!--   -->
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

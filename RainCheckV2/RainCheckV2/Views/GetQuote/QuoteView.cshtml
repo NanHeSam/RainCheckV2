@@ -1,0 +1,69 @@
+﻿@model RainCheckV2.Models.GetQuoteBLL
+
+@{
+    ViewBag.Title = "QuoteView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+}
+
+<div class="wrapper">
+    <div class="row">
+        <form action="QuoteInfoA" method="post">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="~/img/Basic_Policy.jpg" alt="Basic Policy">
+                    <div class="caption">
+                        <h3>Basic Policy </h3>
+                        <h3 class="display-5" style="color:#C70039;"> $@Model.basicQuote </h3>
+                        <p>
+                            *Rental-Coverage.<br />
+                            *Theft Protection. <br />
+                            *Don't Expect Much. <br />
+                        </p>
+                        <p><button class="btn btn-primary" type="submit" name="basicSave" style="background-color:#B03A2E;" value="@Model.basicQuote">Save Quote</button> <button class="btn btn-default" type="submit" name="basic" value="@Model.basicQuote">Purchase</button></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="QuoteInfoB" method="post">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="~/img/Premium_Policy.jpg" alt="Premium Policy">
+                    <div class="caption">
+                        <h3>Premium Policy</h3>
+                        <h3 class="display-5" style="color: #ff6a00;"> $@Model.premiumQuote</h3>
+                        <p>
+                            *Road-Side Assistence.<br />
+                            *Rental-Coverage.<br />
+                            *Accident Forgiveness. <br />
+                            *Theft Protection. <br />
+                        </p>
+                        <p><button style="margin-top:35px; background-color:#B03A2E;" class="btn btn-primary" name="premiumSave" value="@Model.premiumQuote">Save Quote</button> <button style="margin-top:35px;" class="btn btn-default" name="premium" type="submit" value="@Model.premiumQuote">Purchase</button></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="QuoteInfoC" method="post">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="~/img/Super_Policy.jpg" alt="Super Policy">
+                    <div class="caption">
+                        <h3>Super Policy</h3>
+                        <h3 class="display-5" style="color:#900C3F;">$@Model.superQuote</h3>
+                        <p>
+                            *Road-Side Assistence.<br />
+                            *Rental-Coverage.<br />
+                            *Accident Forgiveness. <br />
+                            *Theft Protection. <br />
+                            *Plus Discounts at Auto Stores.<br />
+                        </p>
+                        <p><button style="margin-top:10px; background-color:#B03A2E;" class="btn btn-primary" name="superSave" value="@Model.superQuote">Save Quote</button> <button style="margin-top:10px;" class="btn btn-default" name="super" value="@Model.superQuote">Purchase</button></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

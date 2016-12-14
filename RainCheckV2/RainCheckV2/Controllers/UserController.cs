@@ -17,23 +17,33 @@ namespace RainCheckV2.Controllers
         public ActionResult Load()
         {
             customer_tbl ct = new customer_tbl { customer_id = 1, userid = 2, driver_license_number = 22221982, join_date = Convert.ToDateTime("12/12/1982") };
+            decimal dc = Decimal.Parse(TempData.Peek("Carid").ToString());
             return View("LoadData", ct);
         }
 
         [HttpPost]
+        [MultipleButton(Name = "action", Argument = "StartPolicy")]
         public ActionResult StartPolicy(customer_tbl ob)
         {
             TempData["DriverLicence"] = Request.Form["driver_license_number"];
             RainCheckServerEntities obContext = new RainCheckServerEntities();
             bool uniqDL = true;
             List<customer_tbl> ctb = obContext.customer_tbl.ToList();
+            string st = TempData.Peek("DriverLicence").ToString();
+            decimal temp;
             foreach (customer_tbl c in ctb)
             {
-                string st = TempData.Peek("DriverLicence").ToString();
-                if (c.driver_license_number == Decimal.Parse(st))
+                if (Decimal.TryParse(st, out temp))
                 {
-                    uniqDL = false;
-                    ViewBag.UND = "This Driver has already a policy, Try a diffrent ID";
+                    if (c.driver_license_number == Decimal.Parse(st))
+                    {
+                        uniqDL = false;
+                        ViewBag.UND = "This Driver has already a policy, Try a diffrent ID";
+                    }
+                }
+                else
+                {
+                    return View("LoadData", ob);
                 }
             }
 
@@ -100,6 +110,11 @@ namespace RainCheckV2.Controllers
                 return View("NewPolicy", p);
             }
         }
+
+        public ActionResult Account()
+        {
+            return RedirectToAction("../UserAccount/UserMain");
+        }
         //form submission
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "Submit")]
@@ -150,7 +165,7 @@ namespace RainCheckV2.Controllers
                 RainCheckServerEntities objContext = new RainCheckServerEntities();
                 decimal userID = 0;
                 // string quoteReference = TempData.Peek("QR").ToString();
-                string quoteReference = "1000";
+                string quoteReference = "asdf";  // getting from vivek *******************************************************************************************
                 List<quote> qs = objContext.quotes.ToList();
                 quote newQuote = new quote();
                 foreach (quote q in qs)

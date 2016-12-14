@@ -7,9 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
 namespace RainCheckV2.Models
 {
     using System;
@@ -21,8 +18,6 @@ namespace RainCheckV2.Models
         public decimal userid { get; set; }
         public System.DateTime quote_date { get; set; }
         public decimal quote_amount { get; set; }
-        [Required]
-        [StringLength(10)]
         public string Reference_number { get; set; }
     
         public virtual user_tbl user_tbl { get; set; }

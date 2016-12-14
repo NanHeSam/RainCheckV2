@@ -138,6 +138,11 @@
     <Content Include="Image\image1.jpg" />
     <Content Include="Image\image2.jpg" />
     <Content Include="Image\image3.jpg" />
+    <Content Include="img\Basic_Policy.jpg" />
+    <Content Include="img\car_in_rain.jpg" />
+    <Content Include="img\Premium_Policy.jpg" />
+    <Content Include="img\RainCheckLogo.PNG" />
+    <Content Include="img\Super_Policy.jpg" />
     <Content Include="Models\RainCheckServer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RainCheckServer.edmx</DependentUpon>
@@ -160,6 +165,11 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-ui.css" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -172,9 +182,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="common\DateRangeValid.cs" />
     <Compile Include="common\MultipleButtonAttribute.cs" />
+    <Compile Include="common\ValidateDateRangeAttribute.cs" />
+    <Compile Include="Controllers\CarInfoController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\GetQuoteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
@@ -199,6 +211,8 @@
     </Compile>
     <Compile Include="Models\fogetPasswordVM.cs" />
     <Compile Include="Models\forgetUsernameVM.cs" />
+    <Compile Include="Models\GetQuoteBLL.cs" />
+    <Compile Include="Models\GetQuoteDAL.cs" />
     <Compile Include="Models\login.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
@@ -281,6 +295,10 @@
     <Content Include="Views\User\NewPolicy.cshtml" />
     <Content Include="Views\User\NewAccount.cshtml" />
     <Content Include="Views\User\WelcomePage.cshtml" />
+    <Content Include="Views\GetQuote\GetQuote.cshtml" />
+    <Content Include="Views\GetQuote\ReferenceView.cshtml" />
+    <Content Include="Views\GetQuote\QuoteView.cshtml" />
+    <Content Include="Views\CarInfo\CarInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

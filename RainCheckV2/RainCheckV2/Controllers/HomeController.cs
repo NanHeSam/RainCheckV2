@@ -20,7 +20,7 @@ namespace RainCheckV2.Controllers
             // when validation finished
             TempData["zipcode"] = Request.Form["Zipcode"];
 
-            return RedirectToAction("../Quote/GetQuote");
+            return RedirectToAction("../GetQuote/Get");
         }
 
         public ActionResult getSavedQuotePage()
@@ -56,7 +56,7 @@ namespace RainCheckV2.Controllers
             qt = (quote)TempData["quote_display"];
             TempData["quoteId"] = qt.quote_id;
             TempData["referenceNum"] = qt.Reference_number;
-            return RedirectToAction("../Quote/QuoteResult");
+            return RedirectToAction("../CarInfo/CarInfo");
         }
     }
 }
