@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RainCheckV2
+namespace RainCheckV2.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class login
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public decimal login_id { get; set; }
+        public decimal customer_id { get; set; }
+        public string user_name { get; set; }
+        public string password { get; set; }
+    
+        public virtual customer_tbl customer_tbl { get; set; }
     }
 }

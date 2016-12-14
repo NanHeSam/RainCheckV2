@@ -1,0 +1,66 @@
+﻿body {
+    width:100%;
+    font-family: 'Open Sans', arial;
+    font-size:medium;
+}
+table {
+    width:100%;
+    text-align:left;
+}
+
+hr {
+    margin-top:20px;
+    margin-bottom:20px;
+    border-color:#C0C0C0 !important;
+}
+
+    table td {
+        padding: 3px;
+    }
+
+.infoBlock {
+    width:500px;
+    text-align:left;
+    margin-top:50px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.Content {
+    width:400px;
+    text-align:center;
+    margin-top:100px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:white;
+    border-radius:5px;
+
+}
+
+.HeaderLabel {
+    font-family: 'Open Sans', arial;
+    margin:10px;
+    padding:10px;
+    display:block;
+
+}
+.loginInfoDiv {
+    margin:10px;
+}
+
+.checkboxDiv {
+    margin:10px;
+}
+
+.submitDiv {
+    margin:10px;
+}
+
+.forgetInfoDiv {
+    margin:10px;
+    padding:10px;
+}
+
+.myErrorClass {
+    color: #FF0000; /* red */
+}

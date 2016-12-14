@@ -7,24 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RainCheckV2
+namespace RainCheckV2.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class city
+    public partial class credential
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public city()
+        public credential()
         {
             this.user_tbl = new HashSet<user_tbl>();
         }
     
-        public decimal city_id { get; set; }
-        public decimal state_id { get; set; }
-        public string city_name { get; set; }
+        public decimal credential_id { get; set; }
+        public decimal rank_id { get; set; }
     
-        public virtual state state { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_tbl> user_tbl { get; set; }
     }

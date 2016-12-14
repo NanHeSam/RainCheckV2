@@ -1,0 +1,29 @@
+﻿@model IEnumerable<RainCheckV2.Models.state>
+
+
+
+<div class="container">
+  
+        <div>
+            <h1>Hello</h1>
+        </div>
+        <table class="table" style="align-content:center">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.State_id</td>
+                        <td>@item.State_name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+   
+</div>

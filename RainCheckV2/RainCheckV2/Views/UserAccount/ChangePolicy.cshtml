@@ -1,0 +1,63 @@
+﻿@model IEnumerable<RainCheckV2.Models.coverage_level>
+
+@{
+    ViewBag.Title = "ChangePolicy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head{
+
+}
+<form method="post" action="saveQuote">
+    <h1 class="text-center"> Change Your Policy !</h1>
+    @*self body*@
+    <div class="row text-center">
+        <label>Self Bodily limit</label>
+        <select id="Self_body" name="Self_body">
+            @foreach (var coverage in Model)
+            {
+                <option value="@coverage.level_id">@coverage.limite</option>
+            }
+        </select>
+    </div>
+    <br />
+    @*self prop*@
+    <div class="row text-center">
+        <label>Self property limit</label>
+
+        <select id="Self_property" name="Self_property">
+            @foreach (var coverage in Model)
+            {
+                <option value="@coverage.level_id">@coverage.limite</option>
+            }
+        </select>
+
+    </div>
+    <br />
+    @*op body*@
+    <div class="row text-center">
+        <label>Opponent Bodily limit</label>
+        <select id="op_body" name="op_body">
+            @foreach (var coverage in Model)
+            {
+                <option value="@coverage.level_id">@coverage.limite</option>
+            }
+        </select>
+    </div>
+    <br />
+    @*op prop*@
+    <div class="row text-center">
+        <label>Opponent Property limit</label>
+
+        <select id="op_property" name="op_property">
+            @foreach (var coverage in Model)
+            {
+                <option value="@coverage.level_id">@coverage.limite</option>
+            }
+        </select>
+    </div>
+    <br />
+    <input type="submit" id="submit" name="save" value="change it" class="col-md-2 col-md-offset-3 btn btn-danger" />
+    <input type="submit" id="cancel" name="cancel" value="Cancel" class="col-md-2 col-md-offset-2 btn btn-danger" />
+</form>
+

@@ -1,0 +1,82 @@
+﻿@model RainCheckV2.ViewModels.policyViewModel
+
+@{
+    ViewBag.Title = "UserMain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Welcome @Session["logged_username"]</h3>
+@*display current policy*@
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#policy" data-toggle="tab">Your Policy</a>
+        </li>
+        <li>
+            <a href="#policyHist" data-toggle="tab">Policy History</a>
+        </li>
+        <li>
+            <a href="#change" data-toggle="tab">Change Your policy</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="policy">
+            <div class="container" style="text-align:center">
+                @foreach (var policy in Model.current_policy)
+                {
+                    <h2>@policy.policy_id</h2>
+                    <p>total price -: @policy.policy_amount </p>
+                    <p>amount due -: @(policy.policy_amount / 12)</p>
+                    <p>due date -: @policy.end_date.ToString("yy-MMM-dd")</p>
+                }
+            </div>
+        </div>
+        <div class="tab-pane" id="policyHist">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Policy #</td>
+                        <td>Start Date</td>
+                        <td>End Date</td>
+                        <td>Amount</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var histPolicy in Model.policy_history)
+                    {
+                        <tr>
+                            <td>@histPolicy.policy_number</td>
+                            <td>@histPolicy.start_date</td>
+                            <td>@histPolicy.end_date</td>
+                            <td>@histPolicy.policy_amount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="change" style="text-align:center">
+        @Html.BeginForm("submit", "UserAccount"){ 
+                  <h1>Your Policy</h1>
+                <p>
+                    Personal Bodily Injury & Property Damage:-
+                    <span>@Model.BodyCoverageLevel.coverage_level.limite</span>
+                </p>
+                <p>
+                    Personal Injury:-
+                    <span>@Model.BodyCoverageLevel.coverage_level1.limite</span>
+                </p>
+                <p>
+                    Opponent Bodily Injury & Property Damage:-
+                    <span>@Model.BodyCoverageLevel.coverage_level2.limite</span>
+                </p>
+                <p>
+                    Opponent Injury:-
+                    <span>@Model.BodyCoverageLevel.coverage_level3.limite</span>
+                </p>
+                <input id="submit" type="submit" name="submit" value="Change Policy" class="btn btn-danger" />
+        }
+            
+        </div>
+    </div>
+</div>
+

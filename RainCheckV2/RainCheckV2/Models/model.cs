@@ -7,19 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RainCheckV2
+namespace RainCheckV2.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class quote
+    public partial class model
     {
-        public decimal quote_id { get; set; }
-        public decimal userid { get; set; }
-        public System.DateTime quote_date { get; set; }
-        public decimal quote_amount { get; set; }
-        public string Reference_number { get; set; }
+        public decimal model_id { get; set; }
+        public decimal make_id { get; set; }
+        public string make_name { get; set; }
     
-        public virtual user_tbl user_tbl { get; set; }
+        public virtual make make { get; set; }
     }
 }

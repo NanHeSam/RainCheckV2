@@ -7,30 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RainCheckV2
+namespace RainCheckV2.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class car
+    public partial class make
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public car()
+        public make()
         {
-            this.policy_tbl = new HashSet<policy_tbl>();
+            this.models = new HashSet<model>();
         }
     
-        public decimal car_id { get; set; }
-        public decimal vin_number { get; set; }
-        public string car_model { get; set; }
-        public string body_style { get; set; }
-        public string primary_use { get; set; }
-        public decimal estimate_annual_mileage { get; set; }
-        public bool ownership { get; set; }
-        public decimal car_year { get; set; }
-        public string car_make { get; set; }
+        public decimal make_id { get; set; }
+        public string make_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<policy_tbl> policy_tbl { get; set; }
+        public virtual ICollection<model> models { get; set; }
     }
 }

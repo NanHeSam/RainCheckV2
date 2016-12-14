@@ -7,17 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RainCheckV2
+namespace RainCheckV2.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class model
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public decimal model_id { get; set; }
-        public decimal make_id { get; set; }
-        public string make_name { get; set; }
-    
-        public virtual make make { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -127,85 +127,110 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asset\RainCheckLogo.PNG" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\home.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="RainCheckServer.Context.tt">
+    <Content Include="Models\RainCheckServer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RainCheckServer.edmx</DependentUpon>
       <LastGenOutput>RainCheckServer.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="RainCheckServer.tt">
+    <Content Include="Models\RainCheckServer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RainCheckServer.edmx</DependentUpon>
       <LastGenOutput>RainCheckServer.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="car.cs">
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="Models\car.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="city.cs">
+    <Compile Include="Models\city.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="coverage_level.cs">
+    <Compile Include="Models\coverage_level.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="credential.cs">
+    <Compile Include="Models\credential.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="customer_tbl.cs">
+    <Compile Include="Models\customer_tbl.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="login.cs">
+    <Compile Include="Models\login.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="make.cs">
+    <Compile Include="Models\make.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="model.cs">
+    <Compile Include="Models\model.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="policy_tbl.cs">
+    <Compile Include="Models\policy_tbl.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="quote.cs">
+    <Compile Include="Models\quote.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="RainCheckServer.Context.cs">
+    <Compile Include="Models\RainCheckServer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RainCheckServer.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="RainCheckServer.cs">
+    <Compile Include="Models\RainCheckServer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="RainCheckServer.Designer.cs">
+    <Compile Include="Models\RainCheckServer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RainCheckServer.edmx</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="state.cs">
+    <Compile Include="Models\state.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
-    <Compile Include="user_tbl.cs">
+    <Compile Include="Models\user_tbl.cs">
       <DependentUpon>RainCheckServer.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\policyViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -213,13 +238,19 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="RainCheckServer.edmx">
+    <EntityDeploy Include="Models\RainCheckServer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RainCheckServer.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="RainCheckServer.edmx.diagram">
+    <Content Include="Models\RainCheckServer.edmx.diagram">
       <DependentUpon>RainCheckServer.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\UserAccount\ChangePolicy.cshtml" />
+    <Content Include="Views\UserAccount\UserMain.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -229,8 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
