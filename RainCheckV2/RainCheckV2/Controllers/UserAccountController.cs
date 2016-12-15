@@ -27,6 +27,10 @@ namespace RainCheckV2.Controllers
 
         public ActionResult UserMain()
         {
+            if (Session["custId"] == null)
+            {
+                return RedirectToAction("../Home/Index");
+            }
             decimal id = decimal.Parse(Session["custId"].ToString());
             var policy = new policyViewModel(id);
             return View(policy);
@@ -43,10 +47,15 @@ namespace RainCheckV2.Controllers
         [HttpPost]
         public ActionResult saveQuote(string save, string cancel)
         {
-            var policies = new policyViewModel(1);
+            if (Session["custId"] == null)
+            {
+                return RedirectToAction("../Home/Index");
+            }
+            decimal id = decimal.Parse(Session["custId"].ToString());
+            var policies = new policyViewModel(id);
             if (!string.IsNullOrEmpty(save))
             {
-                var policy = context.policy_tbl.Where(o => o.user_id == 1).OrderByDescending(o => o.start_date).First();
+                var policy = context.policy_tbl.Where(o => o.user_id == id).OrderByDescending(o => o.start_date).First();
 
                 policy.self_body = System.Convert.ToDecimal(Request.Form["Self_body"]);
                 policy.self_property = System.Convert.ToDecimal(Request.Form["Self_property"]);

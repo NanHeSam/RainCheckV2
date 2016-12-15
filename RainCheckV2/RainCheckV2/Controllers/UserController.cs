@@ -164,6 +164,10 @@ namespace RainCheckV2.Controllers
                 RainCheckServerEntities objContext = new RainCheckServerEntities();
                 decimal userID = 0;
                 // string quoteReference = TempData.Peek("QR").ToString();
+                if (TempData.Peek("refNum") == null)
+                {
+                    return RedirectToAction("../Home/Index");
+                }
                 string quoteReference = TempData.Peek("refNum").ToString();  
                 List<quote> qs = objContext.quotes.ToList();
                 quote newQuote = new quote();
@@ -204,7 +208,8 @@ namespace RainCheckV2.Controllers
                     try
                     {
 
-                        //Create a new customer in the database  *******************************************/   
+                        //Create a new customer in the database  *******************************************/  
+                        
                         string dl = TempData.Peek("DriverLicence").ToString();
                         customer_tbl ct = new customer_tbl();
                         ct.userid = userID;

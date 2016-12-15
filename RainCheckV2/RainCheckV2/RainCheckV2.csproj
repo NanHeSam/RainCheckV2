@@ -299,6 +299,8 @@
     <Content Include="Views\GetQuote\ReferenceView.cshtml" />
     <Content Include="Views\GetQuote\QuoteView.cshtml" />
     <Content Include="Views\CarInfo\CarInfo.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Shared\_Layout3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
