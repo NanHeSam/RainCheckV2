@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RainCheckV2.Models
 {
     using System;
@@ -16,7 +18,11 @@ namespace RainCheckV2.Models
     {
         public decimal login_id { get; set; }
         public decimal customer_id { get; set; }
+        [Required]
+        [RegularExpression("^[a-zA-Z][a-zA-Z0-9]{3,10}")]
         public string user_name { get; set; }
+        [Required]
+        [RegularExpression("^[a-zA-Z][a-zA-Z0-9]{3,10}")]
         public string password { get; set; }
     
         public virtual customer_tbl customer_tbl { get; set; }

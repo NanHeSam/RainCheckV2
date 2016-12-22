@@ -147,7 +147,7 @@ namespace RainCheckV2.Controllers
                 }
                 Session["verificationCode"] = vCode;
                 Session["resetPswd_username"] = username; // store username of user who want to reset password
-                TempData["Message"] = "Verification Code sent to your email. \n Please enter code to continue.";
+               // TempData["Message"] = "Verification Code sent to your email. \n Please enter code to continue.";
                 return RedirectToAction("EnterVerifyCode");
             }
 

@@ -11,7 +11,8 @@ namespace RainCheckV2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class customer_tbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,8 @@ namespace RainCheckV2.Models
     
         public decimal customer_id { get; set; }
         public decimal userid { get; set; }
+        [Required]
+        [RegularExpression("^[0-9]{10,10}$", ErrorMessage = "Invalid ID Number, Only 10 digits")]
         public decimal driver_license_number { get; set; }
         public System.DateTime join_date { get; set; }
     

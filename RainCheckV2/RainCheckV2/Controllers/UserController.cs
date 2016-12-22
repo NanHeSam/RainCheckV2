@@ -27,25 +27,46 @@ namespace RainCheckV2.Controllers
             TempData["DriverLicence"] = Request.Form["driver_license_number"];
             RainCheckServerEntities obContext = new RainCheckServerEntities();
             bool uniqDL = true;
-            List<customer_tbl> ctb = obContext.customer_tbl.ToList();
-            string st = TempData.Peek("DriverLicence").ToString();
-            decimal temp;
-            foreach (customer_tbl c in ctb)
+            string str = Request.Form["driver_license_number"].ToString();
+            //List<customer_tbl> ctb = obContext.customer_tbl.ToList();
+            //string st = TempData.Peek("DriverLicence").ToString();
+            //decimal temp;
+            //foreach (customer_tbl c in ctb)
+            //{
+            //    if (Decimal.TryParse(st, out temp))
+            //    {
+            //        if (c.driver_license_number == Decimal.Parse(st))
+            //        {
+            //            uniqDL = false;
+            //            ViewBag.UND = "This Driver has already a policy, Try a diffrent ID";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        return View("LoadData", ob);
+            //    }
+            //}
+
+            decimal val;
+            if (Decimal.TryParse(str, out val) && str != null)
             {
-                if (Decimal.TryParse(st, out temp))
+                List<customer_tbl> ctb = obContext.customer_tbl.ToList();
+                foreach (customer_tbl c in ctb)
                 {
+                    string st = TempData.Peek("DriverLicence").ToString();
+
                     if (c.driver_license_number == Decimal.Parse(st))
                     {
                         uniqDL = false;
                         ViewBag.UND = "This Driver has already a policy, Try a diffrent ID";
                     }
                 }
-                else
-                {
-                    return View("LoadData", ob);
-                }
-            }
 
+            }
+            else
+            {
+                uniqDL = false;
+            }
             if (ModelState.IsValid && uniqDL)
             {
                 policy_tbl pl = new policy_tbl { car_id = 1, start_date = Convert.ToDateTime("12/12/1982"), end_date = Convert.ToDateTime("12/12/1982"), opposite_body = 1, policy_amount = 200, policy_id = 2, self_body = 1, policy_number = 2443662, opposite_property = 2, self_property = 1, user_id = 1 };
@@ -69,30 +90,9 @@ namespace RainCheckV2.Controllers
         [MultipleButton(Name = "action", Argument = "CreateAccount")]
         public ActionResult CreateAccount(policy_tbl p)
         {
-            bool validDate = false;
-            string s1 = Request.Form["start_date"].ToString();
-            string s2 = Request.Form["end_date"].ToString();
-            if (s1 != "" && s2 != "")
-            {
-                DateTime d1 = Convert.ToDateTime(s1);
-                DateTime d2 = Convert.ToDateTime(s2);
-                if (DateTime.Compare(d1, d2) == 0 || DateTime.Compare(d1, d2) > 0)
-                {
-                    validDate = false;
-                    ViewBag.vlid = "The End Date must be greater than Start Date";
-                }
-                else
-                {
-                    validDate = true;
-                }
-            }
-            else
-            {
-                validDate = false;
-            }
+            
 
-
-            if (ModelState.IsValid && validDate)
+            if (ModelState.IsValid)
             {
                 TempData["SD"] = Request.Form["start_date"];
                 TempData["ED"] = Request.Form["end_date"];
@@ -166,7 +166,7 @@ namespace RainCheckV2.Controllers
                 // string quoteReference = TempData.Peek("QR").ToString();
                 if (TempData.Peek("refNum") == null)
                 {
-                    return RedirectToAction("../Home/Index");
+                    TempData["refNum"] = "asdf";
                 }
                 string quoteReference = TempData.Peek("refNum").ToString();  
                 List<quote> qs = objContext.quotes.ToList();

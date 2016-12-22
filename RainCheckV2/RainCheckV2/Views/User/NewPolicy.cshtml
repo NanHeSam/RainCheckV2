@@ -68,10 +68,13 @@
 <div id="id1" class="cl">
     <form id="f1" action="" method="post">
         <div class="cl" style="margin-top:6px">
-            <label for="male" style="color:white; font-size:medium;">Start Date</label> <input style="margin-left:10px" name="start_date" id="Text1" type="text" value="@TempData.Peek("SD")" /> <br />
+            <label for="male" style="color:white; font-size:medium;">Start Date</label> 
+            <input style="margin-left:10px" name="start_date" id="Text1" type="text" value="@TempData.Peek("SD")" />
+            <b style="color:black; font-size:medium">mm/dd/yyyy</b><br />
         </div>
         <div class="cl">
-            <label for="male">End Date </label> <input style="margin-left:10px" id="Text1" name="end_date" type="text" value="@TempData.Peek("ED")" /><br />
+            <label for="male">End Date </label> <input style="margin-left:10px" id="Text1" name="end_date" type="text" value="@TempData.Peek("ED")" />
+            <b style="color:black; font-size:medium">mm/dd/yyyy</b> <br />
             <label for="male"></label> @ViewBag.vlid
         </div>
         <div class="cl">

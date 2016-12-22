@@ -15,29 +15,21 @@
     <link href="~/Scripts/jquery-ui.css" rel="stylesheet">
     <link href="~/Scripts/jquery-ui.min.css" rel="stylesheet">
     <script>
-        $(document)
-            .ready(function() {
-                /* the function check when the key is released, which is the keyup event triggered*/
-                flag = 0;
-                $('#firstname, #lastname')
-                    .keyup(function() {
+                $(document).ready(function () {
+                    /* the function check when the key is released, which is the keyup event triggered*/
+                    flag = 0;
+                    $('#firstname, #lastname').keyup(function () {
                         $('#fandlname').html('');
                         var val1 = $('#firstname').val().toUpperCase();
                         var val2 = $('#lastname').val().toUpperCase();
-                        $('#fandlname').html(val1 + ' ' + val2);
-// combines the two values and displays in the driver's info tab as driver's name
+                            $('#fandlname').html(val1 +' ' + val2); // combines the two values and displays in the driver's info tab as driver's name
                     });
-                $("#continueOne")
-                    .click(function() {
+                    $("#continueOne").click(function () {
                         if ($('#firstname').val() == "") {
-                            document
-                                .getElementById('firstname')
-                                .style.borderColor = "red"; // highlights the border of input textbox in red.
+                            document.getElementById('firstname').style.borderColor = "red"; // highlights the border of input textbox in red.
                             $("p").remove(".FNerror");
-                            $("#firstnameERR").prepend("<p" + " class=" + "FNerror" + ">Please enter name</p>");
-// Inserts content at the beginning of the selected element/s
-                            $("#firstnameERR").css({ "color": "red" });
-//adds or changes the css style of designated html tags.
+                            $("#firstnameERR").prepend("<p"+" class="+"FNerror"+">Please enter name</p>"); // Inserts content at the beginning of the selected element/s
+                            $("#firstnameERR").css({ "color": "red" }); //adds or changes the css style of designated html tags.
                             flag = 1;
                         }
                         if ($('#lastname').val() == "") {
@@ -57,8 +49,7 @@
                         if ($('#city').val() == "") {
                             document.getElementById('city').style.borderColor = "red";
                             $("p").remove(".Cerror");
-                            $("#cityERR").prepend("<p" + " class=" + "Cerror" + ">Please enter City</p>");
-// Inserts content at the beginning of the selected element/s
+                            $("#cityERR").prepend("<p" + " class=" + "Cerror" + ">Please enter City</p>"); // Inserts content at the beginning of the selected element/s
                             $("#cityERR").css({ "color": "red" });
                             flag = 1;
                         }
@@ -83,11 +74,13 @@
                             $("#dobERR").css({ "color": "red" });
                             flag = 1;
                         }
-                        if (flag == 1) {
-                            flag = 0;
-                            return;
-                        } else {
-                            flag = 0;
+                            if(flag==1)
+                            {
+                                flag = 0;
+                                return;
+                            }
+                            else {
+                                flag = 0;
                             $("p").remove(".FNerror");
                             $("p").remove(".LNerror");
                             $("p").remove(".SAerror");
@@ -95,8 +88,7 @@
                             $("p").remove(".Serror");
                             $("p").remove(".ZIPerror");
                             $("p").remove(".DOBerror");
-                            $("#cust").attr("class", "");
-//uses .attr method to set/change the attrbute values of particular element; In this case change: class="active" to class= ""// meaning not active
+                            $("#cust").attr("class", "");   //uses .attr method to set/change the attrbute values of particular element; In this case change: class="active" to class= ""// meaning not active
                             $("#customer").attr("class", "tab-pane");
                             $("#vehic").attr("class", "active");
                             $("#vehicle").attr("class", "tab-pane active");
@@ -104,16 +96,14 @@
                         }
 
                     });
-                $("#continueTwo")
-                    .click(function() {
+                    $("#continueTwo").click(function () {
                         $("#vehic").attr("class", "");
                         $("#vehicle").attr("class", "tab-pane");
                         $("#driv").attr("class", "active");
                         $("#driver").attr("class", "tab-pane active");
                     });
-                /**********************checks for ssn unique next and requirement.*********************/
-                $("#continueThree")
-                    .click(function() {
+                    /**********************checks for ssn unique next and requirement.*********************/
+                    $("#continueThree").click(function () {
 
                         ssn = $('#ssn').val();
                         if ($('#ssn').val() == "") {
@@ -124,11 +114,11 @@
                             flag = 1;
                         }
 
-                        $.ajax({
+                         $.ajax({
                             type: 'POST',
                             url: '/GetQuote/uniqueSSN',
                             data: { value: ssn },
-                            success: function(data) {
+                            success: function (data) {
                                 if (!data) {
                                     flag = 1;
                                     document.getElementById('ssn').style.borderColor = "red";
@@ -137,180 +127,112 @@
                                     $("#ssnERR").css({ "color": "red" });
                                 }
                             }
-                        });
+                         });
 
                         if (flag == 1) {
                             flag = 0;
                             return;
-                        } else {
-                            $("#driv").attr("class", "");
-                            $("#driver").attr("class", "tab-pane");
-                            $("#drivhis").attr("class", "active");
-                            $("#driver_history").attr("class", "tab-pane active");
+                        }
+                        else {
+                                $("#driv").attr("class", "");
+                                $("#driver").attr("class", "tab-pane");
+                                $("#drivhis").attr("class", "active");
+                                $("#driver_history").attr("class", "tab-pane active");
                         }
                     });
-                $("#continueFour")
-                    .click(function() {
+                    $("#continueFour").click(function () {
                         $("#drivhis").attr("class", "");
                         $("#driver_history").attr("class", "tab-pane");
                         $("#cont").attr("class", "active");
                         $("#contact_info").attr("class", "tab-pane active");
                     });
-                $('#myform')
-                    .click(function() {
-
-                        var flag = 0;
-                        if ($('#email').val() == "") {
-                            document.getElementById('email').style.borderColor = "red";
-                            $("p").remove(".emailerror");
-                            $("#emailERR").prepend("<p" + " class=" + "emailerror" + ">Please enter email</p>");
-// Inserts content at the beginning of the selected element/s
-                            $("#emailERR").css({ "color": "red" });
-//adds or changes the css style of designated html tags.
-                            flag = 1;
-                        }
-                        if ($('#phonenumber').val() == "") {
-                            document.getElementById('phonenumber').style.borderColor = "red";
-                            $("p").remove(".phonenumbererror");
-                            $("#phonenumberERR")
-                                .prepend("<p" + " class=" + "phonenumbererror" + ">Please enter phonenumber.</p>");
-// Inserts content at the beginning of the selected element/s
-                            $("#phonenumberERR").css({ "color": "red" });
-//adds or changes the css style of designated html tags.
-                            flag = 1;
-                        }
 
 
-                        email = $('#email').val();
-                        if (email != "") {
-                            $.ajax({
-                                type: 'POST',
-                                url: '/GetQuote/uniqueEmail',
-                                data: { value: email },
-                                success: function(data) {
-                                    if (!data) {
-                                        document.getElementById('email').style.borderColor = "red";
-                                        $("p").remove(".emailerror");
-                                        $("#emailERR")
-                                            .prepend("<p" + " class=" + "emailerror" + ">Enter Unique email-id</p>");
-// Inserts content at the beginning of the selected element/s
-                                        $("#emailERR").css({ "color": "red" });
-//adds or changes the css style of designated html tags.
-                                        flag = 1;
-                                    }
-                                }
-                            });
-                        }
 
-                        phone = $('#phonenumber').val();
-                        if (phone != "") {
-                            $.ajax({
-                                type: 'POST',
-                                url: '/GetQuote/uniquePhone',
-                                data: { value: phone },
-                                success: function(data) {
-                                    if (!data) {
-                                        document.getElementById('phonenumber').style.borderColor = "red";
-                                        $("p").remove(".phonenumbererror");
-                                        $("#phonenumberERR")
-                                            .prepend("<p" +
-                                                " class=" +
-                                                "phonenumbererror" +
-                                                ">Enter Unique phonenumber.</p>");
-                                        $("#phonenumberERR").css({ "color": "red" });
-                                        flag = 1;
-                                    }
-                                }
-                            });
-                        }
-
-                        if (flag == 1) {
-                            flag = 0;
-                            return false;
-                        }
-
-                        /*             else
-                                     {
-                                      //   return true;
-                                     }*/
-
-
-                    });
-
-
-                $("#state")
-                    .change(function() {
+                    $("#state").change(function () {
                         $('#city')
-                            .find('option')
-                            .remove(".tmpcityopt")
-                            .end();
-                        state_name = $("#state").val();
-// getting the value from "Make" dropdownlist then converting to lower case(because in database it is lowercase)
+                                .find('option')
+                                 .remove(".tmpcityopt")
+                                  .end()
+                                    ;
+                        state_name = $("#state").val(); // getting the value from "Make" dropdownlist then converting to lower case(because in database it is lowercase)
                         $.ajax({
                             type: 'POST',
-                            url: '/GetQuote/MyGetState', // /controller/nameofthe method in controller
-                            data: { value: state_name }, // key:value
-                            success: function(data) { //get the json_data (which is object type)
+                            url: '/GetQuote/MyGetState',        // /controller/nameofthe method in controller
+                            data: { value: state_name },      // key:value
+                            success: function (data) {          //get the json_data (which is object type)
 
                                 var count = Object.keys(data).length; //getting the number of objects in json file
                                 for (i = 0; i < count; i++) {
-                                    var option = data[i];
-// make_name is the property of the object, which gives string value of the object
-                                    var text = "<option class=" +
-                                        "tmpcityopt" +
-                                        " value=\"" +
-                                        data[i] +
-                                        "\">" +
-                                        data[i] +
-                                        "</option>";
-// concatenate html with objectname(which is the different car names under a model)
-                                    $("#cityname").after(text); //adds the above text UNDER the dropdownlist
+                                    var option = data[i];  // make_name is the property of the object, which gives string value of the object
+                                    var text = "<option class=" + "tmpcityopt" + " value=\"" + data[i] + "\">" + data[i] + "</option>";// concatenate html with objectname(which is the different car names under a model)
+                                    $("#cityname").after(text);  //adds the above text UNDER the dropdownlist
                                 }
                             }
                         });
                     });
 
 
-                $("#Make")
-                    .change(function() {
-                        $('#Model') //Given class called tmpoption that is removed whenever the make is changed
-                            .find('option')
-                            .remove(".tmpoption")
-                            .end();
-                        value_select = $("#Make").val().toLowerCase();
-// getting the value from "Make" dropdownlist then converting to lower case(because in database it is lowercase)
+                    $("#Make").change(function () {
+                            $('#Model')                                 //Given class called tmpoption that is removed whenever the make is changed
+                                .find('option')
+                                 .remove(".tmpoption")
+                                  .end()
+                                  ;
+                        value_select = $("#Make").val().toLowerCase(); // getting the value from "Make" dropdownlist then converting to lower case(because in database it is lowercase)
                         $.ajax({
                             type: 'POST',
-                            url: '/GetQuote/MyAjaxCall', // /controller/nameofthe method in controller
-                            data: { value: value_select }, // key:value
-                            success: function(data) { //get the json_data (which is object type)
-                                var count = Object.keys(data).length; //getting the number of objects in json file
-                                for (i = 0; i < count; i++) {
-                                    var text = "<option class=" +
-                                        "tmpoption" +
-                                        " value= \"" +
-                                        data[i] +
-                                        "\" >" +
-                                        data[i] +
-                                        "</option>";
-                                    $("#modelname").after(text); //adds the above text UNDER the dropdownlist
+                            url: '/GetQuote/MyAjaxCall',        // /controller/nameofthe method in controller
+                            data: { value: value_select },      // key:value
+                            success: function (data) {          //get the json_data (which is object type)
+                               var count = Object.keys(data).length; //getting the number of objects in json file
+                                for( i = 0; i < count; i++)
+                                {
+                                    var text = "<option class=" + "tmpoption" + " value= \"" + data[i] + "\" >" + data[i] + "</option>";
+                                   $("#modelname").after(text);  //adds the above text UNDER the dropdownlist
                                 }
                             }
                         });
                     });
 
-            });
+                });
+                function validatereq() {
 
-        $(function() {
-            $("#dob").datepicker({ changeYear: true, minDate: '-100Y', maxDate: "-18Y" });
-        });
+                    var flag = 0;
+                    if ($('#email').val() == "") {
+                        document.getElementById('email').style.borderColor = "red";
+                        $("p").remove(".emailerror");
+                        $("#emailERR").prepend("<p" + " class=" + "emailerror" + ">Please enter email</p>"); // Inserts content at the beginning of the selected element/s
+                        $("#emailERR").css({ "color": "red" }); //adds or changes the css style of designated html tags.
+                        flag = 1;
+                    }
+                    if ($('#phonenumber').val() == "") {
+                        document.getElementById('phonenumber').style.borderColor = "red";
+                        $("p").remove(".phonenumbererror");
+                        $("#phonenumberERR").prepend("<p" + " class=" + "phonenumbererror" + ">Please enter phonenumber.</p>"); // Inserts content at the beginning of the selected element/s
+                        $("#phonenumberERR").css({ "color": "red" }); //adds or changes the css style of designated html tags.
+                        flag = 1;
+                    }
+
+
+                    if (flag == 1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+
+
+                $(function () {
+                    $("#dob").datepicker({changeYear: true, minDate: '-100Y', maxDate: "-18Y" });
+                });
     </script>
 }
 
 
 <div class="wrapper">
-
-    <form id="myform" action="submit" method="post">
+    <form action="Submit" onsubmit="return validatereq()" method="post">
         <div class="row">
             <div class="col-md-12">
                 <h2>Customer</h2>
@@ -582,7 +504,7 @@
                                             <h3 class="display-5" align="left">SSN:</h3>
                                         </div>
                                         <div class="col-xs-3 col-xs-offset-3" style="padding-top:15px;">
-                                            <input type="password" id="ssn" name="ssn" text-align="center" class="form-control form-control-md" placeholder="SSN" required>
+                                            <input type="password" id="ssn" maxlength="9" name="ssn" text-align="center" class="form-control form-control-md" placeholder="SSN" required>
                                             <div id="ssnERR"></div>
                                         </div>
                                     </div>
@@ -732,11 +654,11 @@
                                         </div>
                                         <div class="col-xs-5" style="padding-top:15px;">
                                             <input type="tel" id="phonenumber" name="phonenumber" class="form-control" text-align="center">
-                                            <div id="phonenumberERR"></div>
+                                            <div id="phonenumberERR">  </div>
                                         </div>
                                     </div>
                                     <div style="padding-top:10px;">
-                                        <button type="submit" value="submit" id="submit" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Get Quote</button>
+                                        <button type="submit" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Get Quote</button>
                                     </div>
                                 </div>
                             </div>

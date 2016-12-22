@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using RainCheckV2.common;
+
 namespace RainCheckV2.Models
 {
     using System;
@@ -18,7 +21,13 @@ namespace RainCheckV2.Models
         public decimal policy_number { get; set; }
         public decimal car_id { get; set; }
         public decimal user_id { get; set; }
+        [Required]
+        [ValidateDateRangeAttribute]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public System.DateTime start_date { get; set; }
+        [Required]
+        [ValidateDateRangeAttribute]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public System.DateTime end_date { get; set; }
         public decimal policy_amount { get; set; }
         public decimal self_property { get; set; }
